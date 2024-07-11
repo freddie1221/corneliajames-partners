@@ -1,6 +1,7 @@
 import { createAdminApiClient } from '@shopify/admin-api-client';
 import '../../app/globals.css';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Product({ product }) {
   if (!product) {
@@ -13,9 +14,11 @@ export default function Product({ product }) {
         ← Back to Products
       </Link>
       <div className="flex flex-col md:flex-row items-center">
-        <img
-          src={product.featuredImage?.url || 'No image available'}
+      <Image
+          src={product.featuredImage?.url || '/no-image-available.jpg'}
           alt={product.title}
+          width={500}
+          height={500}
           className="w-full md:w-1/2 h-auto object-cover mb-4 md:mb-0 md:mr-4 rounded-lg"
         />
 
