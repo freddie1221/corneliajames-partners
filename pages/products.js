@@ -1,3 +1,5 @@
+import {createAdminApiClient} from '@shopify/admin-api-client';
+
 export default function Products({ products }) {
   return (
     <div>
@@ -17,37 +19,32 @@ export async function getStaticProps() {
     const storeName = process.env.SHOPIFY_STORE_NAME;
     const accessToken = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
 
-    // Log environment variables for debugging
-    console.log('SHOPIFY_STORE_NAME:', storeName);
-    console.log('SHOPIFY_ADMIN_ACCESS_TOKEN:', accessToken);
-
-    const response = await fetch(`https://${storeName}/admin/api/2023-10/graphql.json`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Access-Token': accessToken,
-      },
-      body: JSON.stringify({
-        query: `
-          {
-            products(first: 10) {
-              edges {
-                node {
-                  id
-                  title
-                }
-              }
-            }
-          }
-        `,
-      }),
+    const client = createAdminApiClient({
+      storeDomain: storeName,
+      apiVersion: '2024-07',
+      accessToken: accessToken,
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    const operation = `
+    {
+      products(first: 10) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }`;
+
+    const { data, errors, extensions } = await client.request(operation);
+
+    if (errors) {
+      console.error('GraphQL errors:', errors); // Log detailed errors
+      throw new Error(`GraphQL error: ${JSON.stringify(errors)}`);
     }
 
-    const { data } = await response.json();
+
     const products = data.products.edges.map(edge => edge.node);
 
     return {
