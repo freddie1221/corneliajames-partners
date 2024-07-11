@@ -6,7 +6,12 @@ export default function Products({ products }) {
       <h1>Products</h1>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>{product.title}</li>
+          <li key={product.id}>{product.title}
+            <ul>
+              <li>{product.handle}</li>
+              <li>{product.featuredImage?.url || 'No image available'}</li>
+            </ul>
+          </li>
         ))}
       </ul>
     </div>
@@ -27,11 +32,15 @@ export async function getStaticProps() {
 
     const operation = `
     {
-      products(first: 10) {
+      products(first: 250, sortKey: TITLE, reverse: false) {
         edges {
           node {
             id
             title
+            handle
+            featuredImage {
+              url
+            }
           }
         }
       }
