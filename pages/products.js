@@ -32,12 +32,18 @@ export async function getStaticProps() {
 
     const operation = `
     {
-      products(first: 200, sortKey: TITLE, reverse: false) {
+      products(
+          first: 200, 
+          sortKey: TITLE, 
+          reverse: false, 
+          query: "status:ACTIVE"
+        ) {
         edges {
           node {
             id
             title
             handle
+            status
             featuredImage {
               url
             }
