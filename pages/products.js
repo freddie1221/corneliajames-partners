@@ -1,5 +1,6 @@
-import {createAdminApiClient} from '@shopify/admin-api-client';
-import '../app/globals.css'
+import Link from 'next/link';
+import { createAdminApiClient } from '@shopify/admin-api-client';
+import '../app/globals.css';
 
 export default function Products({ products }) {
   return (
@@ -7,16 +8,22 @@ export default function Products({ products }) {
       <div className="grid grid-cols-4 gap-4">
         {products.map((product) => (
           <div key={product.id} className="relative group">
-            <img src={product.featuredImage?.url || 'No image available'} alt={product.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity">
-              <h2 className="text-white text-xl">{product.title}</h2>
-            </div>
+            <Link href={`/products/${product.handle}`}>
+              
+                <img src={product.featuredImage?.url || 'No image available'} alt={product.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <h2 className="text-white text-xl">{product.title}</h2>
+                </div>
+              
+            </Link>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+// ... existing getStaticProps function ...
 
 // This function gets called at build time
 export async function getStaticProps() {
