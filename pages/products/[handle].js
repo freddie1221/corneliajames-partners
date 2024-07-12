@@ -1,15 +1,27 @@
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { createAdminApiClient } from '@shopify/admin-api-client';
 import '../../app/globals.css';
 import Link from 'next/link';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 export default function Product({ product }) {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   if (!product) {
     return <div>Product not found</div>;
   }
+  const handleBackClick = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    router.push('/products');
+  };
 
   return (
     <div className="container mx-auto p-10  text-gray-900">
-      <Link href="/products" className="mt-4 inline-block text-black py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300">
+      {loading && <LoadingSpinner />}
+      <Link href="/products" onClick={handleBackClick} className="mt-4 inline-block text-black py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300">
         ← Back to Products
       </Link>
       <div className="flex flex-col md:flex-row items-center">
