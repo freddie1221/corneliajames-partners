@@ -21,9 +21,6 @@ export default function Product({ product }) {
   return (
     <div className="container mx-auto p-10  text-gray-900">
       {loading && <LoadingSpinner />}
-      <Link href="/products" onClick={handleBackClick} className="mt-4 inline-block text-black py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300">
-        ← Back to Products
-      </Link>
       <div className="flex flex-col md:flex-row items-center">
         <img
           src={product.featuredImage?.url || 'No image available'}
@@ -64,6 +61,9 @@ export default function Product({ product }) {
           >
             View Product Detail
           </a>
+          <Link href="/products" onClick={handleBackClick} className="mt-4 text-black py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300">
+            ← Back to Products
+          </Link>
         </div>
       </div>
     </div>
