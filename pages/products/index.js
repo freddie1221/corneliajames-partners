@@ -1,10 +1,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import { createAdminApiClient } from '@shopify/admin-api-client';
-import '../app/globals.css';
-import ProductGrid from '../components/ProductGrid';
+import '../../app/globals.css';
+import ProductGrid from '../../components/ProductGrid';
 
 export default function Products({ products }) {
   const [loading, setLoading] = useState(false);
