@@ -31,17 +31,19 @@ export default function Product({ product }) {
           alt={product.title}
           className="w-full md:w-1/2 h-auto object-cover mb-4 md:mb-0 md:mr-4 rounded-lg"
         />
-        <div className="md:w-1/2">
+        <div className="max-w-lg">
+        
           <div className="flex flex-col space-y-4">
             <h1 className="text-4xl font-serif font-bold">{product.title}</h1>
+            <p>MSRP: GBP {product.variants.edges[0].node.price}</p>
             <a
               href={`https://www.corneliajames.com/products/${product.handle}`}
-              className="inline-block bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300 text-center"
+              className="inline-block bg-primCol text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300 text-center"
             >
               View Product Detail
             </a>
             <DownloadAll images={product.images.edges.map(edge => ({ url: edge.node.url, title: product.title }))} />
-            <Link href="/products" onClick={handleBackClick} className="text-black py-2 px-4 rounded-lg hover:bg-gray-100 transition duration-300">
+            <Link href="/products" onClick={handleBackClick} className="inline-block bg-white text-black py-2 px-4 rounded-lg hover:bg-gray-50 transition duration-300 text-center">
               ← Back to Products
             </Link>
           </div>
@@ -123,6 +125,13 @@ export async function getStaticProps({ params }) {
       status
       featuredImage {
         url
+      }
+      variants(first: 1){
+        edges {
+          node {
+            price
+          }
+        }
       }
       images(first: 10) {
         edges {

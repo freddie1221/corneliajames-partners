@@ -29,7 +29,7 @@ export default function DownloadAll({ images }) {
   return (
     <button
       onClick={handleDownloadAll}
-      className="inline-block bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300 text-center"
+      className="inline-block bg-primCol text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300 text-center"
       title="Download All Images"
     >
       Download all images
