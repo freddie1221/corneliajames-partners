@@ -6,6 +6,7 @@ import { createAdminApiClient } from '@shopify/admin-api-client';
 import '../../app/globals.css';
 import ProductGrid from '../../components/ProductGrid';
 
+
 export default function Products({ products }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -43,9 +44,9 @@ export async function getStaticProps() {
     {
       products(
           first: 200, 
-          sortKey: TITLE, 
+          sortKey: PRODUCT_TYPE, 
           reverse: false, 
-          query: "status:ACTIVE"
+          query: "status:ACTIVE and published_status:published"
         ) {
         edges {
           node {
