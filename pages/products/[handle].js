@@ -36,6 +36,9 @@ export default function Product({ product }) {
           <div className="flex flex-col space-y-4">
             <h1 className="text-4xl font-serif font-bold">{product.title}</h1>
             <p>MSRP: GBP {product.variants.edges[0].node.price}</p>
+            
+            {/* to add colors */}
+            <p> Colours: {product.options.values[0]}</p>
             <a
               href={`https://www.corneliajames.com/products/${product.handle}`}
               className="inline-block bg-primCol text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300 text-center"
@@ -123,6 +126,9 @@ export async function getStaticProps({ params }) {
       title
       handle
       status
+      options (first: 1) {
+        values
+      }
       featuredImage {
         url
       }
