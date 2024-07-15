@@ -16,6 +16,10 @@ module.exports = {
         primCol: '#1a1a1a',
         secCol: '#F5F3ED', // Your custom hex color
       },
+      fontFamily: {
+        'heading': ['ITC Caslon'],
+        'body': ['Avenir Next', 'sans-serif'],
+      },
     },
   },
   plugins: [
