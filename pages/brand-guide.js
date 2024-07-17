@@ -29,10 +29,12 @@ export default function BrandGuide() {
           <div>
             <p className="text-2xl font-heading">ITC Caslon No 224 Medium (standard)</p>
             <p className="text-lg text-gray-600">Headings</p>
+            <a href="/fonts/ITC_Caslon_No_224_Medium.ttf" download className="inline-block px-4 py-2 bg-gray-100 border border-gray-900 rounded-md transition duration-300 hover:bg-gray-900 hover:text-gray-100 hover:no-underline">Download Font</a>
           </div>
           <div>
             <p className="text-2xl font-sans">Avenir Next (medium)</p>
             <p className="text-lg text-gray-600">Body text</p>
+            <a href="/fonts/Avenir_Next_Medium.ttf" download className="inline-block px-4 py-2 bg-gray-100 border border-gray-900 rounded-md transition duration-300 hover:bg-gray-900 hover:text-gray-100 hover:no-underline">Download Font</a>
           </div>
         </div>
       </section>

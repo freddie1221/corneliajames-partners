@@ -12,14 +12,14 @@
 
 @font-face {
   font-family: 'Avenir Next';
-  src: url('/fonts/AvenirNext.otf') format('otf');
+  src: url('/fonts/Avenir_Next_Medium.otf') format('otf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'ITC Caslon';
-  src: url('/ITC-Caslon.ttf') format('ttf');
+  src: url('/fonts/ITC_Caslon_No_224_Medium.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
 }
