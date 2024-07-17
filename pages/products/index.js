@@ -5,6 +5,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import { createAdminApiClient } from '@shopify/admin-api-client';
 import '../../app/globals.css';
 import ProductGrid from '../../components/ProductGrid';
+import { PRODUCTS_QUERY } from '../../queries/productsQuery'; // New import
 
 
 export default function Products({ products }) {
@@ -15,18 +16,20 @@ export default function Products({ products }) {
     setLoading(true);
     router.push(href);
   };
+
   return (
     <div className="bg-gray-200">
-    {loading && <LoadingSpinner />}
-    <div className={`mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 ${loading ? 'hidden' : ''}`}>
-      <h2 className="sr-only">Products</h2>
-      <ProductGrid products={products} handleNavigation={handleNavigation} />
+      
+      {loading && <LoadingSpinner />}
+      
+      <div className={`mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 ${loading ? 'hidden' : ''}`}>
+        <h2 className="sr-only">Products</h2>
+        <ProductGrid products={products} handleNavigation={handleNavigation} />
+      </div>
     </div>
-  </div>
   );
 }
 
-// ... existing getStaticProps function ...
 
 // This function gets called at build time
 export async function getStaticProps() {
@@ -40,36 +43,12 @@ export async function getStaticProps() {
       accessToken: accessToken,
     });
 
-    const operation = `
-    {
-      products(
-          first: 200, 
-          sortKey: PRODUCT_TYPE, 
-          reverse: false, 
-          query: "status:ACTIVE and published_status:published"
-        ) {
-        edges {
-          node {
-            id
-            title
-            productType
-            handle
-            status
-            featuredImage {
-              url
-            }
-          }
-        }
-      }
-    }`;
-
-    const { data, errors, extensions } = await client.request(operation);
+    const { data, errors, extensions } = await client.request(PRODUCTS_QUERY);
 
     if (errors) {
       console.error('GraphQL errors:', errors); // Log detailed errors
       throw new Error(`GraphQL error: ${JSON.stringify(errors)}`);
     }
-
 
     const products = data.products.edges.map(edge => edge.node);
 
