@@ -1,11 +1,9 @@
-
+import '../../app/globals.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { createAdminApiClient } from '@shopify/admin-api-client';
-import '../../app/globals.css';
+import { fetchProducts } from '../../utils/fetchProducts';
 import ProductGrid from '../../components/ProductGrid';
-import { PRODUCTS_QUERY } from '../../queries/productsQuery'; // New import
 
 
 export default function Products({ products }) {
@@ -33,36 +31,11 @@ export default function Products({ products }) {
 
 // This function gets called at build time
 export async function getStaticProps() {
-  try {
-    const storeName = process.env.SHOPIFY_STORE_NAME;
-    const accessToken = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
+  const products = await fetchProducts();
 
-    const client = createAdminApiClient({
-      storeDomain: storeName,
-      apiVersion: '2024-07',
-      accessToken: accessToken,
-    });
-
-    const { data, errors, extensions } = await client.request(PRODUCTS_QUERY);
-
-    if (errors) {
-      console.error('GraphQL errors:', errors); // Log detailed errors
-      throw new Error(`GraphQL error: ${JSON.stringify(errors)}`);
-    }
-
-    const products = data.products.edges.map(edge => edge.node);
-
-    return {
-      props: {
-        products,
-      },
-    };
-  } catch (error) {
-    console.error('Fetch error:', error);
-    return {
-      props: {
-        products: [],
-      },
-    };
-  }
+  return {
+    props: {
+      products,
+    },
+  };
 }
