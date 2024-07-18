@@ -43,6 +43,23 @@ export default function Home() {
             Click here for the Cornelia James Product Library
           </p>
         </a>
+
+        <a
+          href="/products/data"
+          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className={`mb-3 text-2xl font-semibold`}>
+            Product Data{" "}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
+            Click here for the Cornelia James Product Data Grid (work in progress)
+          </p>
+        </a>
         
         <a
           href="/brand-guide"
