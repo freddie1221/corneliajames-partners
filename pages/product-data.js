@@ -1,5 +1,5 @@
 import '../app/globals.css';
-import { fetchProducts } from '../utils/fetchProducts';
+// import { fetchProducts } from '../utils/fetchProducts';
 // this query provides the product data
 
 export default function Data() {
@@ -8,7 +8,7 @@ export default function Data() {
      
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-1 lg:text-left flex justify-center items-center">
 
-        <p>This page will statically render Cornelia James's product data, in a table format</p>
+        <p>This page will statically render Cornelia James product data, in a table format</p>
         <br />
         <p>There will be the option to download the data in CSV format</p>
         <br />
