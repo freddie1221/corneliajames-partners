@@ -18,7 +18,6 @@
     "react-instantsearch-dom": "^6.40.4"
   },
   "devDependencies": {
-    "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4"
