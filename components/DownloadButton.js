@@ -17,7 +17,7 @@ export default function DownloadButton({ url, title }) {
   return (
     <button
       onClick={handleDownload}
-      className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+      className="mt-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
       title="Download Image"
     >
       <svg
