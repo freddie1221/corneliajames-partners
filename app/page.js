@@ -14,13 +14,12 @@ export default function Home() {
           >
             <Image
               src="/logo_solo.png"
-              alt="Vercel Logo"
-              className="dark:invert"
+              alt="Cornelia James"
               width={300}
               height={24}
               priority
             />
-            {" "} for Parnters
+            {" "} for Partners
           </a>
         </div>
       </div>
