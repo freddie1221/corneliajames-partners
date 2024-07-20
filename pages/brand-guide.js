@@ -52,7 +52,7 @@ export default function BrandGuide() {
           <div className="flex flex-col items-center">
             <p className="text-lg">Royal Warrant</p>
             <img src="/crest.png" alt="Logo 2" className="h-60 object-contain mb-2" />
-            <DownloadButton url="/crest.png" title="Royal Warrant" />
+            <DownloadButton url="/royal_warrant.png" title="Royal Warrant" />
           </div>
         </div>
       </section>
