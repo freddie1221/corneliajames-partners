@@ -62,7 +62,7 @@ export default function BrandGuide() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
             <img src="/cornelia.png" alt="Logo 1" className="w-300 object-contain mb-2" />
-            <p className="text-lg">Cornelia James in her studio</p>
+            <p className="text-lg">Cornelia James (founder)</p>
             <DownloadButton url="/cornelia.png" title="Cornelia" />
           </div>
         </div>
