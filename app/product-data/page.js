@@ -1,4 +1,4 @@
-import '../app/globals.css';
+import '../globals.css';
 // import { fetchProducts } from '../utils/fetchProducts';
 // this query provides the product data
 

@@ -1,3 +1,5 @@
+'use client';
+
 export default function DownloadButton({ url, title }) {
   if (!url) return null;
 
