@@ -2,14 +2,12 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    <main className="flex flex-col items-center justify-center p-24 my-auto">
       {/* menu options */}
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left flex justify-center justify-center">
+      <div className="grid text-center my-auto lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left flex justify-center justify-center">
         <a
           href="/products"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Products{" "}
@@ -22,11 +20,11 @@ export default function Home() {
           </p>
         </a>
 
+
+        {/*
         <a
           href="/product-data"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Product Data{" "}
@@ -38,12 +36,11 @@ export default function Home() {
             Click here for the Cornelia James Product Data Grid (work in progress)
           </p>
         </a>
+        */}
         
         <a
           href="/brand-guide"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Brand Guide{" "}
@@ -59,11 +56,9 @@ export default function Home() {
         <a
           href="https://www.corneliajames.com"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Our website{" "}
+            Our Website{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
