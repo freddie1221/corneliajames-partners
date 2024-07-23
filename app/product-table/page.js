@@ -7,6 +7,14 @@ export async function generateStaticParams() {
   return [{}];
 }
 
+export async function generateMetadata() {
+  // You can add dynamic metadata here if needed
+  return {
+    title: 'Cornelia James Product Table',
+    description: 'View and download all product data in a convenient table format',
+  };
+}
+
 export default async function ProductTablePage() {
   const products = await getProductsData();
   
