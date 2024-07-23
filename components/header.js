@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="w-full p-4 bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between">
-        <a href="/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2">
           <Image
             src="/logo_solo.png"
             alt="Cornelia James"
