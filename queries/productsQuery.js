@@ -13,8 +13,15 @@ export const PRODUCTS_QUERY = `
         productType
         handle
         status
+        onlineStoreUrl
         featuredImage {
           url
+        }
+        priceRangeV2 {
+          maxVariantPrice {
+            amount
+            currencyCode
+          }
         }
       }
     }

@@ -5,12 +5,18 @@ import { useState } from 'react';
 export default function ProductTable({ initialProducts }) {
   const [products] = useState(initialProducts);
 
+  const fields = [
+    'title', 
+    'productType'
+  ];
+
   const downloadCSV = () => {
+  
     const headers = ['Title', 'Price', 'Inventory'];
     const csvContent = [
       headers.join(','),
       ...products.map(product => 
-        [product.title, product.price, product.inventoryQuantity].join(',')
+        fields.map(field => product[field]).join(',')
       )
     ].join('\n');
 
@@ -40,17 +46,25 @@ export default function ProductTable({ initialProducts }) {
         <table className="min-w-full bg-white">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Image</th>
+              {fields.map((field) => (
+                <th key={field} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  {field.charAt(0).toUpperCase() + field.slice(1)}
+                </th>
+              ))}
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inventory</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {products.map((product) => (
               <tr key={product.id}>
-                <td className="px-6 py-4 whitespace-nowrap">{product.title}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{product.price}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{product.inventoryQuantity}</td>
+                <td className="px-4 py-4 whitespace-nowrap w-16">
+                  <img src={product.featuredImage.url} alt={product.title} className="h-16 w-16 object-cover" />
+                </td>
+                {fields.map((field) => (
+                  <td key={field} className="px-4 py-4 whitespace-nowrap">{product[field]}</td>
+                ))}
+                <td className="px-4 py-4 whitespace-nowrap">{product.priceRangeV2.maxVariantPrice.currencyCode} {Math.round(product.priceRangeV2.maxVariantPrice.amount)}</td>
               </tr>
             ))}
           </tbody>
