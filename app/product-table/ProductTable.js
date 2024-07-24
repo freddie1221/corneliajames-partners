@@ -7,11 +7,18 @@ export default function ProductTable({ initialProducts }) {
 
 
   const downloadCSV = () => {
-  
     const csvContent = [
-      fields.join(','),
-      ...products.map(product => 
-        fields.map(field => product[field]).join(',')
+      fieldHeaders.join(','),
+      ...products.flatMap(product => 
+        product.variants.nodes.map(variant => [
+          variant.image?.url || product.featuredImage?.url,
+          product.title,
+          product.productType,
+          variant.selectedOptions[0].value,
+          variant.selectedOptions[1]?.value || '',
+          Math.round(product.priceRangeV2.maxVariantPrice.amount),
+          variant.sku
+        ].join(','))
       )
     ].join('\n');
 
