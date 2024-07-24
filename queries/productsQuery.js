@@ -1,10 +1,11 @@
 export const PRODUCTS_QUERY = `
+
 {
   products(
       first: 200, 
       sortKey: PRODUCT_TYPE, 
       reverse: false, 
-      query: "status:ACTIVE and published_status:published"
+      query: "status:ACTIVE and published_status:published and collection_title:backend-core"
     ) {
     edges {
       node {
@@ -21,6 +22,18 @@ export const PRODUCTS_QUERY = `
           maxVariantPrice {
             amount
             currencyCode
+          }
+        }
+        variants (first: 250) {
+          nodes {
+            sku
+            selectedOptions {
+              name
+              value
+            }
+            image {
+              url
+            }
           }
         }
       }

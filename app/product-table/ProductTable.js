@@ -5,16 +5,11 @@ import { useState } from 'react';
 export default function ProductTable({ initialProducts }) {
   const [products] = useState(initialProducts);
 
-  const fields = [
-    'title', 
-    'productType'
-  ];
 
   const downloadCSV = () => {
   
-    const headers = ['Title', 'Price', 'Inventory'];
     const csvContent = [
-      headers.join(','),
+      fields.join(','),
       ...products.map(product => 
         fields.map(field => product[field]).join(',')
       )
@@ -32,6 +27,13 @@ export default function ProductTable({ initialProducts }) {
       document.body.removeChild(link);
     }
   };
+
+  const fields = [
+    'title', 
+    'productType'
+  ];
+
+
 
   return (
     <div className="container mx-auto p-4">
@@ -52,22 +54,37 @@ export default function ProductTable({ initialProducts }) {
                   {field.charAt(0).toUpperCase() + field.slice(1)}
                 </th>
               ))}
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Color</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">SKU</th>
             </tr>
           </thead>
+
           <tbody className="divide-y divide-gray-200">
             {products.map((product) => (
-              <tr key={product.id}>
-                <td className="px-4 py-4 whitespace-nowrap w-16">
-                  <img src={product.featuredImage.url} alt={product.title} className="h-16 w-16 object-cover" />
+              product.variants.nodes.map((variant) => (
+
+                <tr key={product.id}>
+                  <td className="px-4 py-4 whitespace-nowrap w-16">
+                  <img src={variant.image?.url || product.featuredImage?.url} alt={product.title} className="h-16 w-16 object-cover" />
                 </td>
+                
                 {fields.map((field) => (
                   <td key={field} className="px-4 py-4 whitespace-nowrap">{product[field]}</td>
                 ))}
+
+                <td className="px-4 py-4 whitespace-nowrap">{variant.selectedOptions[0].value}</td>
+                {variant.selectedOptions[1] && (
+                  <td className="px-4 py-4 whitespace-nowrap">{variant.selectedOptions[1].value}</td>
+                )}
                 <td className="px-4 py-4 whitespace-nowrap">{product.priceRangeV2.maxVariantPrice.currencyCode} {Math.round(product.priceRangeV2.maxVariantPrice.amount)}</td>
+                <td className="px-4 py-4 whitespace-nowrap">{variant.sku}</td>
               </tr>
+              ))
             ))}
           </tbody>
+
         </table>
       </div>
     </div>
