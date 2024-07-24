@@ -18,6 +18,15 @@ export const PRODUCTS_QUERY = `
         featuredImage {
           url
         }
+        metafield(key: "material", namespace: "custom") {
+          reference {
+            ... on Metaobject {
+              field(key: "composition") {
+                value
+              }
+            }
+          }
+        }
         priceRangeV2 {
           maxVariantPrice {
             amount

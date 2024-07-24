@@ -43,11 +43,14 @@ export default function ProductTable({ initialProducts }) {
     'Image',
     'title', 
     'Product Type',
+    'Material Composition',
     'Color',
     'Size',
     'Price (GBP)',
-    'SKU'
+    'SKU',
   ];
+
+  console.log(products[0])
 
   return (
     <div className="container mx-auto p-4">
@@ -80,6 +83,7 @@ export default function ProductTable({ initialProducts }) {
                 {fields.map((field) => (
                   <td key={field} className="px-4 py-4 whitespace-nowrap">{product[field]}</td>
                 ))}
+                <td className="px-4 py-4 whitespace-nowrap">{product.metafield?.reference?.field?.value ?? ''}</td>
 
                 <td className="px-4 py-4 whitespace-nowrap">{variant.selectedOptions[0].value}</td>
                 {variant.selectedOptions[1] && (
@@ -87,6 +91,7 @@ export default function ProductTable({ initialProducts }) {
                 )}
                 <td className="px-4 py-4 whitespace-nowrap">{Math.round(product.priceRangeV2.maxVariantPrice.amount)}</td>
                 <td className="px-4 py-4 whitespace-nowrap">{variant.sku}</td>
+                
               </tr>
               ))
             ))}
