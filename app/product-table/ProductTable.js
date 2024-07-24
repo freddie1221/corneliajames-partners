@@ -32,6 +32,15 @@ export default function ProductTable({ initialProducts }) {
     'title', 
     'productType'
   ];
+  const fieldHeaders = [
+    'Image',
+    'title', 
+    'Product Type',
+    'Color',
+    'Size',
+    'Price (GBP)',
+    'SKU'
+  ];
 
 
 
@@ -48,16 +57,9 @@ export default function ProductTable({ initialProducts }) {
         <table className="min-w-full bg-white">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Image</th>
-              {fields.map((field) => (
-                <th key={field} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {field.charAt(0).toUpperCase() + field.slice(1)}
-                </th>
+              {fieldHeaders.map((field) => (
+                <th key={field} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{field}</th>
               ))}
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Color</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">SKU</th>
             </tr>
           </thead>
 
@@ -78,7 +80,7 @@ export default function ProductTable({ initialProducts }) {
                 {variant.selectedOptions[1] && (
                   <td className="px-4 py-4 whitespace-nowrap">{variant.selectedOptions[1].value}</td>
                 )}
-                <td className="px-4 py-4 whitespace-nowrap">{product.priceRangeV2.maxVariantPrice.currencyCode} {Math.round(product.priceRangeV2.maxVariantPrice.amount)}</td>
+                <td className="px-4 py-4 whitespace-nowrap">{Math.round(product.priceRangeV2.maxVariantPrice.amount)}</td>
                 <td className="px-4 py-4 whitespace-nowrap">{variant.sku}</td>
               </tr>
               ))
