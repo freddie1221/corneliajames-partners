@@ -103,7 +103,6 @@ export default async function Product({ params }) {
             <h1 className="text-4xl font-serif font-bold">{product.title}</h1>
             <p>MSRP: GBP {product.variants.edges[0].node.price}</p>
             <p>Colours: {product.options.values[0]}</p>
-            <p>Material: {product.metafield.reference.field.value}</p>
             <a
               href={`https://www.corneliajames.com/products/${product.handle}`}
               className="inline-block bg-primCol text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300 text-center"
