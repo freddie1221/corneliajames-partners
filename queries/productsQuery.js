@@ -33,6 +33,11 @@ export const PRODUCTS_QUERY = `
             currencyCode
           }
         }
+        options {
+          optionValues {
+            name
+          }
+        }
         variants (first: 250) {
           nodes {
             sku

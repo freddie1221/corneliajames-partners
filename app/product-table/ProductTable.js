@@ -95,9 +95,14 @@ export default function ProductTable({ initialProducts }) {
                     <button onClick={() => toggleRow(key)}>{expandedRows[key] ? '▼' : '▶'}</button>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap w-16">
-                    <img src={product.image} alt={product.title} className="h-16 w-16 object-cover" />
+                    <a href={product.image} target="_blank">
+                      <img src={product.image} alt={product.title} className="h-16 w-16 object-cover" />
+                    </a>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap">{product.title} - {product.color}</td>
+                  
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <a href={`/products/${product.handle}`}>{product.title} - {product.color}</a>
+                  </td>
                   <td className="px-4 py-4 whitespace-nowrap">{product.metafield?.reference?.field?.value ?? ''}</td>
                   <td className="px-4 py-4 whitespace-nowrap">{Math.round(product.priceRangeV2.maxVariantPrice.amount)}</td>
                 </tr>

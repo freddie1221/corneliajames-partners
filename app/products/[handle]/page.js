@@ -36,6 +36,7 @@ async function getProduct(handle) {
           }
         }
       }
+      
       images(first: 10) {
         edges {
           node {
@@ -102,7 +103,6 @@ export default async function Product({ params }) {
           <div className="flex flex-col space-y-4">
             <h1 className="text-4xl font-serif font-bold">{product.title}</h1>
             <p>MSRP: GBP {product.variants.edges[0].node.price}</p>
-            <p>Colours: {product.options.values[0]}</p>
             <a
               href={`https://www.corneliajames.com/products/${product.handle}`}
               className="inline-block bg-primCol text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300 text-center"
@@ -111,7 +111,10 @@ export default async function Product({ params }) {
             </a>
             <DownloadAll images={product.images.edges.map((edge) => ({ url: edge.node.url, title: product.title }))} />
             <Link href="/products" className="inline-block bg-white text-black py-2 px-4 rounded-lg hover:bg-gray-50 transition duration-300 text-center">
-              ← Back to Products
+              ← Back to Gallery
+            </Link>
+            <Link href="/product-table" className="inline-block bg-white text-black py-2 px-4 rounded-lg hover:bg-gray-50 transition duration-300 text-center">
+              ← Back to Product List
             </Link>
           </div>
         </div>
