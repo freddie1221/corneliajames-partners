@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default function ProductTable({ initialProducts }) {
   const [products] = useState(initialProducts);
@@ -89,7 +89,7 @@ export default function ProductTable({ initialProducts }) {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {Object.entries(groupedProducts).map(([key, product]) => (
-              <>
+              <React.Fragment key={key}>
                 <tr key={key}>
                   <td className="px-4 py-4 whitespace-nowrap">
                     <button onClick={() => toggleRow(key)}>{expandedRows[key] ? '▼' : '▶'}</button>
@@ -130,7 +130,7 @@ export default function ProductTable({ initialProducts }) {
                     </td>
                   </tr>
                 )}
-              </>
+               </React.Fragment>
             ))}
           </tbody>
         </table>

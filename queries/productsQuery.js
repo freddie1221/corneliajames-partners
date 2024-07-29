@@ -5,7 +5,7 @@ export const PRODUCTS_QUERY = `
       first: 200, 
       sortKey: PRODUCT_TYPE, 
       reverse: false, 
-      query: "status:ACTIVE and published_status:published and collection_title:backend-core"
+      query: "status:ACTIVE and collection_title:backend-core"
     ) {
     edges {
       node {
