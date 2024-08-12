@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 export default function ProductTable({ initialProducts }) {
   const [products] = useState(initialProducts);
   const [expandedRows, setExpandedRows] = useState({});
+  console.log(products[0]);
 
   // Group products by title and color
   const groupedProducts = products.reduce((acc, product) => {
@@ -24,7 +25,6 @@ export default function ProductTable({ initialProducts }) {
     setExpandedRows(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
-
   const downloadCSV = () => {
     const csvContent = [
       fieldHeaders.join(','),
@@ -33,14 +33,18 @@ export default function ProductTable({ initialProducts }) {
           variant.image?.url || product.featuredImage?.url,
           product.title,
           product.productType,
-          product.metafield?.reference?.field?.value ?? '',
-          variant.selectedOptions[0].value,
+          variant.selectedOptions[0].value || '',
+          product.length?.value || '',
+          product.material?.reference.composition.value || '',
+          product.material?.reference.care.value || '',
+          product.features?.value || '',
           variant.selectedOptions[1]?.value || '',
           Math.round(product.priceRangeV2.maxVariantPrice.amount),
           variant.sku
         ].join(','))
       )
     ].join('\n');
+    
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
@@ -59,15 +63,18 @@ export default function ProductTable({ initialProducts }) {
     'Image',
     'title', 
     'Product Type',
-    'Material Composition',
     'Color',
+    'Length',
+    'Composition',
+    'Care',
+    'Features',
     'Size',
     'Price (GBP)',
     'SKU',
   ];
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="p-8">
       <h1 className="text-2xl font-bold mb-4">Product Table</h1>
       <button 
         onClick={downloadCSV}
@@ -78,14 +85,13 @@ export default function ProductTable({ initialProducts }) {
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white">
           <thead className="bg-gray-100">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expand</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Material</th>
-
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price (GBP)</th>
-            </tr>
+          <tr>
+            {['Expand', 'Image', 'Title', 'Length (inches)', 'Features', 'Composition', 'Care', 'Price (GBP)'].map((header) => (
+              <th key={header} className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                {header}
+              </th>
+            ))}
+          </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {Object.entries(groupedProducts).map(([key, product]) => (
@@ -103,7 +109,10 @@ export default function ProductTable({ initialProducts }) {
                   <td className="px-4 py-4 whitespace-nowrap">
                     <a href={`/products/${product.handle}`}>{product.title} - {product.color}</a>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap">{product.metafield?.reference?.field?.value ?? ''}</td>
+                  <td className="px-4 py-4 whitespace-nowrap">{product.length?.value ?? ''}</td>
+                  <td className="px-4 py-4 whitespace-nowrap">{product.features?.value ?? ''}</td>
+                  <td className="px-4 py-4 whitespace-nowrap">{product.material?.reference.composition.value ?? ''}</td>
+                  <td className="px-4 py-4 whitespace-nowrap">{product.material?.reference.care.value ?? ''}</td>
                   <td className="px-4 py-4 whitespace-nowrap">{Math.round(product.priceRangeV2.maxVariantPrice.amount)}</td>
                 </tr>
                 {expandedRows[key] && (

@@ -18,10 +18,19 @@ export const PRODUCTS_QUERY = `
         featuredImage {
           url
         }
-        metafield(key: "material", namespace: "custom") {
+        length: metafield(key: "length", namespace: "my_fields") {
+          value
+        }
+        features: metafield(key: "product_features", namespace: "custom") {
+          value
+        }
+        material: metafield(key: "material", namespace: "custom") {
           reference {
             ... on Metaobject {
-              field(key: "composition") {
+              composition: field(key: "composition") {
+                value
+              }
+              care: field(key: "care_summary") {
                 value
               }
             }
