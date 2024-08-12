@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function ProductTable({ initialProducts }) {
   const [products] = useState(initialProducts);
   const [expandedRows, setExpandedRows] = useState({});
-  console.log(products[0]);
 
   // Group products by title and color
   const groupedProducts = products.reduce((acc, product) => {
@@ -71,6 +70,8 @@ export default function ProductTable({ initialProducts }) {
     'Price (GBP)',
     'SKU',
   ];
+
+  
 
   return (
     <div className="p-8">
