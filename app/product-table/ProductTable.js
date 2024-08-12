@@ -38,14 +38,13 @@ export default function ProductTable({ initialProducts }) {
           product.material?.reference.composition.value || '',
           product.material?.reference.care.value || '',
           product.features?.value || '',
-          variant.selectedOptions[1]?.value || '',
+          variant.selectedOptions[1]?.value.replace('½', '.5') || '',
           Math.round(product.priceRangeV2.maxVariantPrice.amount),
           variant.sku
         ].join(','))
       )
     ].join('\n');
     
-
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     if (link.download !== undefined) {
