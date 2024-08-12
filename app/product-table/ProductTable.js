@@ -36,7 +36,7 @@ export default function ProductTable({ initialProducts }) {
           product.length?.value || '',
           product.material?.reference.composition.value || '',
           product.material?.reference.care.value || '',
-          product.features?.value || '',
+          product.features?.value ? JSON.parse(product.features.value).join(', ') : '',
           variant.selectedOptions[1]?.value.replace('½', '.5') || '',
           Math.round(product.priceRangeV2.maxVariantPrice.amount),
           variant.sku
@@ -70,8 +70,6 @@ export default function ProductTable({ initialProducts }) {
     'Price (GBP)',
     'SKU',
   ];
-
-  
 
   return (
     <div className="p-8">
@@ -110,7 +108,7 @@ export default function ProductTable({ initialProducts }) {
                     <a href={`/products/${product.handle}`}>{product.title} - {product.color}</a>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">{product.length?.value ?? ''}</td>
-                  <td className="px-4 py-4 whitespace-nowrap">{product.features?.value ?? ''}</td>
+                  <td className="px-4 py-4 whitespace-nowrap">{product.features?.value ? JSON.parse(product.features.value).join(', ') : ''}</td>
                   <td className="px-4 py-4 whitespace-nowrap">{product.material?.reference.composition.value ?? ''}</td>
                   <td className="px-4 py-4 whitespace-nowrap">{product.material?.reference.care.value ?? ''}</td>
                   <td className="px-4 py-4 whitespace-nowrap">{Math.round(product.priceRangeV2.maxVariantPrice.amount)}</td>

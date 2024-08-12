@@ -14,6 +14,7 @@ export const PRODUCTS_QUERY = `
         productType
         handle
         status
+        tags
         onlineStoreUrl
         featuredImage {
           url
