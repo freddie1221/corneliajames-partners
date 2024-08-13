@@ -1,9 +1,10 @@
 import '../../app/globals.css';
-import { fetchProducts } from '../../utils/fetchProducts';
+// import { fetchProducts } from '../../utils/fetchProducts';
+import { getProductsData } from '../../lib/shopify';
 import ProductGrid from '../../components/ProductGrid';
 
 export default async function ProductsPage() {
-  const products = await fetchProducts();
+  const products = await getProductsData();
 
   return (
     <div className="bg-gray-200">
@@ -17,7 +18,7 @@ export default async function ProductsPage() {
 
 // This function gets called at build time
 export async function generateStaticParams() {
-  const products = await fetchProducts();
+  const products = await getProductsData();
 
   return products.map((product) => ({
     params: { id: product.id },

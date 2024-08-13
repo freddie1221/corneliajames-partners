@@ -5,7 +5,7 @@ export const PRODUCTS_QUERY = `
       first: 200, 
       sortKey: PRODUCT_TYPE, 
       reverse: false, 
-      query: "status:ACTIVE and collection_title:backend-core"
+      query: "status:ACTIVE"
     ) {
     edges {
       node {
@@ -16,6 +16,11 @@ export const PRODUCTS_QUERY = `
         status
         tags
         onlineStoreUrl
+        collections(first: 1) {
+          nodes {
+            title
+          }
+        }
         featuredImage {
           url
         }

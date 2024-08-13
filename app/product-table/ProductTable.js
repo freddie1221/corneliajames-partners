@@ -24,6 +24,21 @@ export default function ProductTable({ initialProducts }) {
     setExpandedRows(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
+  const fieldHeaders = [
+    'Image',
+    'title', 
+    'Product Type',
+    'Color',
+    'Length',
+    'Composition',
+    'Care',
+    'Features',
+    'Size',
+    'Price (GBP)',
+    'SKU',
+    'Country of Origin'
+  ];
+
   const downloadCSV = () => {
     const csvContent = [
       fieldHeaders.join(','),
@@ -39,7 +54,8 @@ export default function ProductTable({ initialProducts }) {
           product.features?.value ? JSON.parse(product.features.value).join(', ') : '',
           variant.selectedOptions[1]?.value.replace('½', '.5') || '',
           Math.round(product.priceRangeV2.maxVariantPrice.amount),
-          variant.sku
+          variant.sku,
+          "GB"
         ].join(','))
       )
     ].join('\n');
@@ -56,20 +72,6 @@ export default function ProductTable({ initialProducts }) {
       document.body.removeChild(link);
     }
   };
-
-  const fieldHeaders = [
-    'Image',
-    'title', 
-    'Product Type',
-    'Color',
-    'Length',
-    'Composition',
-    'Care',
-    'Features',
-    'Size',
-    'Price (GBP)',
-    'SKU',
-  ];
 
   return (
     <div className="p-8">
