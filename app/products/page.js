@@ -1,7 +1,7 @@
 import '../../app/globals.css';
 // import { fetchProducts } from '../../utils/fetchProducts';
 import { getProductsData } from '../../lib/shopify';
-import ProductGrid from '../../components/ProductGrid';
+import ProductGrid from './ProductGrid';
 
 export default async function ProductsPage() {
   const products = await getProductsData();
