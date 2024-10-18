@@ -1,9 +1,9 @@
 import { Inter } from "next/font/google";
 import Header from "../components/header";
 import "./globals.css";
-import MixpanelInitializer from "../lib/mixpanel";
+import MixpanelInitializer from "@/lib/mixpanel";
 
-const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata = {
   title: "Cornelia James for partners",
@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className} >
+      <body >
         <MixpanelInitializer />
         <Header />
         <main>

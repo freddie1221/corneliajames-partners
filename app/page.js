@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 
 export default function Home() {
   return (
@@ -19,8 +19,6 @@ export default function Home() {
             Click here for the Cornelia James Product Library
           </p>
         </a>
-
-
 
         <a
           href="/product-table"

@@ -11,22 +11,27 @@
 }
 
 @font-face {
-  font-family: 'Avenir Next';
-  src: url('/fonts/Avenir_Next_Medium.otf') format('otf');
+  font-family: 'AvenirNextLTPro';
+  src: url('/fonts/AvenirNextLTPro-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'ITC Caslon';
-  src: url('/fonts/ITC_Caslon_No_224_Medium.ttf') format('ttf');
+  font-family: 'ITCCaslon224StdMedium';
+  src: url('/fonts/ITCCaslon224StdMedium.ttf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #efefef;
+  font-family: 'AvenirNextLTPro', sans-serif;
+}
+
+h1 {
+  font-family: 'ITCCaslon224StdMedium', serif;
 }
 
 @layer utilities {
