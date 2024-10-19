@@ -1,5 +1,4 @@
 import '../../app/globals.css';
-// import { fetchProducts } from '../../utils/fetchProducts';
 import { getProductsData } from '../../lib/shopify';
 import ProductGrid from './ProductGrid';
 

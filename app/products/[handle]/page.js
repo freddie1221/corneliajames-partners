@@ -36,7 +36,12 @@ async function getProduct(handle) {
           }
         }
       }
-      
+      priceRangeV2 {
+        maxVariantPrice {
+          amount
+            currencyCode
+        }
+      }
       images(first: 10) {
         edges {
           node {
@@ -90,10 +95,12 @@ export default async function Product({ params }) {
   if (!product) {
     return <div>Product not found</div>;
   }
+  const msrp = parseFloat(product.priceRangeV2.maxVariantPrice.amount).toFixed(2);
+  const wholesale = parseFloat(msrp * 0.46).toFixed(2);
 
   return (
     <div className="container mx-auto p-10 text-gray-900">
-      <div className="flex flex-col md:flex-row items-center">
+      <div className="flex flex-col md:flex-row items-center p-2">
         <img
           src={product.featuredImage?.url || 'No image available'}
           alt={product.title}
@@ -102,7 +109,12 @@ export default async function Product({ params }) {
         <div className="max-w-lg">
           <div className="flex flex-col space-y-4">
             <h1 className="text-4xl font-serif font-bold">{product.title}</h1>
-            <p>MSRP: GBP {product.variants.edges[0].node.price}</p>
+
+            <div className="flex flex-row justify-between p-2">
+              <span>MSRP GBP £{msrp}</span>
+              <span>Wholesale GBP £{wholesale}</span>
+            </div>
+
             <a
               href={`https://www.corneliajames.com/products/${product.handle}`}
               className="inline-block bg-primCol text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition duration-300 text-center"

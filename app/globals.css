@@ -30,12 +30,13 @@ body {
   font-family: 'AvenirNextLTPro', sans-serif;
 }
 
-h1 {
-  font-family: 'ITCCaslon224StdMedium', serif;
-}
+
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .heading {
+    font-family: 'ITCCaslon224StdMedium', serif;
   }
 }
