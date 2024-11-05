@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body >
+      <body className="min-h-screen flex flex-col p-8 bg-gray-100">
         <MixpanelInitializer />
         <Header />
         <main>

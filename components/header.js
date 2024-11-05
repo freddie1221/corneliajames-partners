@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="w-full p-4 bg-white shadow-md">
+    <header className="w-full p-4">
       <div className="container mx-auto flex items-center justify-between">
         <a href="/" className="flex items-center gap-2">
           <Image

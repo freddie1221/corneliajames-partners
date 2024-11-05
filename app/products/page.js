@@ -4,14 +4,14 @@ import ProductGrid from './ProductGrid';
 
 export default async function ProductsPage() {
   const products = await getProductsData();
+  const productTypes = Array.from(new Set(products.map(product => product.productType)));
 
   return (
-    <div className="bg-gray-200">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+
+      <div className="mx-auto max-w-2xl lg:max-w-7xl py-8">
         <h2 className="sr-only">Products</h2>
-        <ProductGrid products={products} />
+        <ProductGrid products={products} productTypes={productTypes} />
       </div>
-    </div>
   );
 }
 

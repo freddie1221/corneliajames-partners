@@ -74,7 +74,7 @@ export default function ProductTable({ initialProducts }) {
   };
 
   return (
-    <div className="p-8">
+    <div className="">
       <h1 className="text-2xl font-bold mb-4">Product Table</h1>
       <button 
         onClick={downloadCSV}
@@ -128,7 +128,7 @@ export default function ProductTable({ initialProducts }) {
                         </thead>
                         <tbody>
                           {product.variants.map((variant) => (
-                            <tr key={variant.id}>
+                            <tr key={variant.sku}>
                               <td className="px-4 py-4 whitespace-nowrap">{variant.selectedOptions[0]?.value || 'N/A'}</td>
                               <td className="px-4 py-4 whitespace-nowrap">{variant.selectedOptions[1]?.value || 'N/A'}</td>
                               <td className="px-4 py-4 whitespace-nowrap">{variant.sku}</td>
