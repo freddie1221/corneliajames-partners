@@ -9,10 +9,14 @@ export default async function ProductionPage({ params }) {
   if (!record) {
     return <div>Record not found</div>;
   }
+  console.log(record);
   
   return (
-    <div className="max-w-2xl mx-auto flex flex-col gap-4">
-      <h1 className="text-2xl font-bold my-4 text-center">{record.product} - {record.option1}</h1>
+    <div className="mx-auto flex flex-col gap-4">
+      <div className="flex flex-col mb-3">
+        <h1 className="text-2xl font-bold text-center">{record.product} - {record.option1}</h1>
+        <h2 className="text-lg font-bold text-center">{record.material}</h2>
+      </div>
     
       <Image 
         src={record.imageUrl} 
@@ -23,12 +27,15 @@ export default async function ProductionPage({ params }) {
       />
 
       {attribute("Glove Size", record.option2)}
+      {attribute("Fit Summary", record.fitSummary)}
+      {attribute("Length", record.length + " inches")}
       {attribute("Upper Arm Fit", record.uaf)}
       {attribute("Elbow Fit", record.ebf)}
       {attribute("Index Finger Fit", record.iff)}
-      {attribute("Enhancements", record.enhancements)}
-      {attribute("Enhancement Detailing", record.enhancementDetailing)}
-      {attribute("Other Detailing", record.otherDetailing)}
+      {attribute("Enhancements", record.enhancements )}
+      {attribute("Enhancement Detailing", record.enhancementDetailing )}
+      {attribute("Other Detailing", record.otherDetailing )}
+      {attribute("Order Notes", record.orderNotes, "flex-col")}
       {attribute("Glovemaker", record.makerName)}
 
       <AssignGlovemaker glovemakers={glovemakers} recordId={params.recordId} makerName={record.makerName}/>
@@ -36,14 +43,28 @@ export default async function ProductionPage({ params }) {
   );  
 }
 
-function attribute(name, value) {
+function attribute(name, value, flexDirection = "flex-row") {
   if (!value) {
     return null;
   }
-  return <div className="flex flex-row bg-white p-4 rounded-lg w-full">
-    <div className="text-gray-500 w-1/2">{name}</div>
-    <div className="w-1/2">{value}</div>
-  </div>
+  if (Array.isArray(value)) {
+    return( 
+      <div className="flex flex-col row bg-white px-4 py-2 rounded-lg w-full">
+        <div className="text-gray-500 w-full">{name}</div>
+        <div className="w-full">
+          {value.map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  return( 
+    <div className={`flex ${flexDirection} bg-white p-4 rounded-lg w-full`}>
+      <div className="text-gray-500 w-full">{name}</div>
+      <div className="w-full">{value}</div>
+    </div>
+  )
 } 
 
 

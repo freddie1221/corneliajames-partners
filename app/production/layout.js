@@ -1,6 +1,4 @@
 
-import Header from "@/components/header";
-import { Analytics } from "@vercel/analytics/react"
 
 
 export const metadata = {
@@ -10,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <main>
+    <main className="max-w-2xl mx-auto">
       {children}
     </main>
   );
