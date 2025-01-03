@@ -1,10 +1,6 @@
 
-import Header from "../components/header";
 import "./globals.css";
-import MixpanelInitializer from "@/lib/mixpanel";
 import { Analytics } from "@vercel/analytics/react"
-
-
 
 
 export const metadata = {
@@ -15,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col px-4 py-8 md:p-8 bg-gray-100">
+      <body className="min-h-screen flex flex-col px-4 py-8 md:p-8 bg-gray-100 text-gray-900 ">
         {children}
         <Analytics />
       </body>

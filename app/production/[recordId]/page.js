@@ -9,13 +9,12 @@ export default async function ProductionPage({ params }) {
   if (!record) {
     return <div>Record not found</div>;
   }
-  console.log(record);
   
   return (
     <div className="mx-auto flex flex-col gap-4">
       <div className="flex flex-col mb-3">
-        <h1 className="text-2xl font-bold text-center">{record.product} - {record.option1}</h1>
-        <h2 className="text-lg font-bold text-center">{record.material}</h2>
+        <h1 className="text-3xl font-bold text-center">{record.product} - {record.option1}</h1>
+        <h2 className="text-xl font-bold text-center">{record.material}</h2>
       </div>
     
       <Image 
@@ -50,8 +49,8 @@ function attribute(name, value, flexDirection = "flex-row") {
   if (Array.isArray(value)) {
     return( 
       <div className="flex flex-col row bg-white px-4 py-2 rounded-lg w-full">
-        <div className="text-gray-500 w-full">{name}</div>
-        <div className="w-full">
+        <div className="text-gray-700 w-full">{name}</div>
+        <div className="w-full font-semibold">
           {value.map((item, index) => (
             <div key={index}>{item}</div>
           ))}
@@ -61,8 +60,8 @@ function attribute(name, value, flexDirection = "flex-row") {
   }
   return( 
     <div className={`flex ${flexDirection} bg-white p-4 rounded-lg w-full`}>
-      <div className="text-gray-500 w-full">{name}</div>
-      <div className="w-full">{value}</div>
+      <div className="text-gray-700 w-full">{name}</div>
+      <div className="w-full font-semibold">{value}</div>
     </div>
   )
 } 
