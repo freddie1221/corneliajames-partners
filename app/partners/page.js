@@ -3,10 +3,25 @@ import Link from 'next/link';
 export default function Home() {
   const menuItems = [
     {
-      href: '/partners',
-      title: 'Partner Portal',
-      description: 'Cornelia James Partner Portal',
-    }
+      href: '/products',
+      title: 'Product Gallery',
+      description: 'Cornelia James Product Library',
+    },
+    {
+      href: '/product-table',
+      title: 'Product Data',
+      description: 'Product Data Grid & CSV Download',
+    },
+    {
+      href: '/brand-guide',
+      title: 'Brand Guide',
+      description: 'Cornelia James Brand Guide',
+    },
+    {
+      href: 'https://www.corneliajames.com',
+      title: 'Our Website',
+      description: 'corneliajames.com',
+    },
   ];
 
   return (
