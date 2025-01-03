@@ -1,5 +1,4 @@
-import '../globals.css';
-import DownloadButton from '../../components/DownloadButton';
+import DownloadButton from '@/components/DownloadButton';
 
 export default function BrandGuide() {
   return (

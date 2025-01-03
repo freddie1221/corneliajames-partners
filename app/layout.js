@@ -1,7 +1,9 @@
-import { Inter } from "next/font/google";
+
 import Header from "../components/header";
 import "./globals.css";
 import MixpanelInitializer from "@/lib/mixpanel";
+import { Analytics } from "@vercel/analytics/react"
+
 
 
 
@@ -14,10 +16,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col p-8 bg-gray-100">
-        <Header />
-        <main>
-          {children}
-        </main>
+        {children}
+        <Analytics />
       </body>
     </html>
   );

@@ -3,17 +3,17 @@ import Link from 'next/link';
 export default function Home() {
   const menuItems = [
     {
-      href: '/products',
+      href: '/partners/products',
       title: 'Product Gallery',
       description: 'Cornelia James Product Library',
     },
     {
-      href: '/product-table',
+      href: '/partners/product-table',
       title: 'Product Data',
       description: 'Product Data Grid & CSV Download',
     },
     {
-      href: '/brand-guide',
+      href: '/partners/brand-guide',
       title: 'Brand Guide',
       description: 'Cornelia James Brand Guide',
     },

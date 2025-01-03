@@ -1,10 +1,7 @@
-// import { useState } from 'react';
-// import { useRouter } from 'next/router';
 
-import '../../../app/globals.css';
 import Link from 'next/link';
 import { createAdminApiClient } from '@shopify/admin-api-client';
-import DownloadAll from '../../../components/DownloadAll';
+import DownloadAll from '@/components/DownloadAll';
 
 async function getProduct(handle) {
   const storeName = process.env.SHOPIFY_STORE_NAME;
