@@ -34,5 +34,6 @@ function mapRecord(record) {
     orderNotes: record.fields["DEV | Order Notes"]?.[0],
     productionRecordId: record.fields["Production Record ID"]?.[0],
     reviewerNotes: record.fields["Reviewer Notes"]?.[0],
+    makeable: record.fields["Makeable"],
   }
 }

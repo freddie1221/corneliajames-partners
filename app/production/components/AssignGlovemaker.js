@@ -6,9 +6,11 @@ import { assignGlovemakerAction } from "@/app/production/actions/glovemaker";
 import Message from "./Message";
 
 export default function AssignGlovemaker({glovemakers, record}) {
+
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   
+  if(!record.makeable) { return null; }
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
