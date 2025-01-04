@@ -1,11 +1,11 @@
-import base from "@/lib/airtable/airtable";
+import base from "@/app/production/lib/airtable/airtable";
 
-export default async function assignGlovemaker({recordId, glovemaker}) {
+export default async function assignGlovemaker({productionRecordId, glovemaker}) {
 
   try {
     await base('Production').update(
       [{
-        id: recordId,
+        id: productionRecordId,
         fields: { "Maker": glovemaker }
       }],
       { typecast: true }

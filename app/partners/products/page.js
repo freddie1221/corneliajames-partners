@@ -1,4 +1,4 @@
-import { getProductsData } from '@/lib/shopify';
+import { getProductsData } from '@/app/production/lib/shopify';
 import ProductGrid from './ProductGrid';
 
 export default async function ProductsPage() {

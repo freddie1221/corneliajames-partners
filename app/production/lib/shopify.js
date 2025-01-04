@@ -1,5 +1,5 @@
 import { createAdminApiClient } from '@shopify/admin-api-client';
-import { PRODUCTS_QUERY } from '../queries/productsQuery';
+import { PRODUCTS_QUERY } from '../../../queries/productsQuery';
 
 export async function getProductsData() {
   try {

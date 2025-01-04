@@ -1,9 +1,13 @@
-import assignGlovemaker from "@/lib/airtable/assignGlovemaker";
-
+import assignGlovemaker from "@/app/production/lib/airtable/assignGlovemaker";
+import { NextResponse } from "next/server";
 export async function POST(request) {
   
-  const { recordId, glovemaker } = await request.json();
-  const result = await assignGlovemaker({recordId, glovemaker});
+  const { productionRecordId, glovemaker } = await request.json();
+  const result = await assignGlovemaker({productionRecordId, glovemaker});
   
-  return Response.json(result);
+  if (result.success) {
+    return NextResponse.json({ success: true });
+  } else {
+    return NextResponse.json({ success: false, error: result.error });
+  }
 }

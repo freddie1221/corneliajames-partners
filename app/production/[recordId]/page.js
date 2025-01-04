@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import AssignGlovemaker from './components/AssignGlovemaker';
-import getProductionItem from '@/lib/airtable/getProductionItem';
+import getProductionItem from '@/app/production/lib/airtable/getProductionItem';
 
 export default async function ProductionPage({ params }) {
   const record = await getProductionItem(params.recordId);
@@ -9,6 +9,7 @@ export default async function ProductionPage({ params }) {
   if (!record) {
     return <div>Record not found</div>;
   }
+
   
   return (
     <div className="mx-auto flex flex-col gap-4">
@@ -37,7 +38,11 @@ export default async function ProductionPage({ params }) {
       {attribute("Order Notes", record.orderNotes, "flex-col")}
       {attribute("Glovemaker", record.makerName)}
 
-      <AssignGlovemaker glovemakers={glovemakers} recordId={params.recordId} makerName={record.makerName}/>
+      <AssignGlovemaker 
+        glovemakers={glovemakers} 
+        productionRecordId={record.productionRecordId} 
+        makerName={record.makerName}
+      />
     </div>
   );  
 }
@@ -50,7 +55,7 @@ function attribute(name, value, flexDirection = "flex-row") {
     return( 
       <div className="flex flex-col row bg-white px-4 py-2 rounded-lg w-full">
         <div className="text-gray-700 w-full">{name}</div>
-        <div className="w-full font-semibold">
+        <div className="w-full text-lg">
           {value.map((item, index) => (
             <div key={index}>{item}</div>
           ))}
@@ -61,13 +66,13 @@ function attribute(name, value, flexDirection = "flex-row") {
   return( 
     <div className={`flex ${flexDirection} bg-white p-4 rounded-lg w-full`}>
       <div className="text-gray-700 w-full">{name}</div>
-      <div className="w-full font-semibold">{value}</div>
+      <div className="w-full text-lg">{value}</div>
     </div>
   )
 } 
 
 
-import base from '@/lib/airtable/airtable';
+import base from '@/app/production/lib/airtable/airtable';
 
 
 async function GetGlovemakers() {
