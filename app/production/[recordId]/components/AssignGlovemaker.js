@@ -29,6 +29,7 @@ export default function AssignGlovemaker({glovemakers, productionRecordId, maker
       setLoading(false);
     }
   }
+  
   if(makerName) {
     return null;
   }
