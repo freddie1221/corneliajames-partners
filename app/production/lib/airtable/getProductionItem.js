@@ -26,11 +26,13 @@ function mapRecord(record) {
     iff: record.fields["IFF"],
     length: record.fields["Glove Length (in)"],
     makerName: record.fields["Maker Name"],
+    reviewer: record.fields["Reviewer"],
     fitSummary: record.fields["Fit Summary"],
     enhancements: record.fields["DEV | Enhancements"],
     enhancementDetailing: record.fields["Enhancement Detailing"],
     otherDetailing: record.fields["Other Detailing"],
     orderNotes: record.fields["DEV | Order Notes"]?.[0],
     productionRecordId: record.fields["Production Record ID"]?.[0],
+    reviewerNotes: record.fields["Reviewer Notes"]?.[0],
   }
 }

@@ -3,10 +3,11 @@
 import { useState } from "react";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { assignGlovemakerAction } from "@/app/production/actions/glovemaker";
+import Message from "./Message";
 
-export default function AssignGlovemaker({glovemakers, productionRecordId, makerName}) {
+export default function AssignGlovemaker({glovemakers, record}) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,35 +17,23 @@ export default function AssignGlovemaker({glovemakers, productionRecordId, maker
     const glovemaker = formData.get('glovemaker');
     
     try {
-      const result = await assignGlovemakerAction(productionRecordId, glovemaker);
-      
-      if (result.success) {
-        window.location.reload();
-      } else {
-        setError(result.error || 'Something went wrong');
-      }
+      const result = await assignGlovemakerAction(record.productionRecordId, glovemaker);
+      if (result.success) { setMessage('Glovemaker has been assigned'); } 
+      else { setMessage(result.error || 'Something went wrong'); }
     } catch (error) {
-      setError('Something went wrong');
+      setMessage('Something went wrong');
     } finally {
       setLoading(false);
     }
   }
   
-  if(makerName) {
-    return null;
-  }
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <div className="p-4 bg-white rounded-lg">{error}</div>;
-  }
+  if (record.makerName) { return null; }
+  if (loading) { return <LoadingSpinner />; }
+  if (message) { return <Message message={message} />; }
 
   return (
     <div className="flex flex-col gap-2 mt-2">
-      <h2 className="text-center text-xl font-bold">Assign Glovemaker</h2>
+      <h2 className="heading-secondary">Glovemaker Assignment</h2>
       <form className="flex flex-col gap-3 mt-4" onSubmit={handleSubmit}>
         {glovemakers.map(glovemaker => (
           <div key={glovemaker} className="flex items-center gap-3 bg-white px-4 py-2 rounded-lg">

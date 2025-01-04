@@ -1,13 +1,17 @@
+
 'use server'
 
 import base from "@/app/production/lib/airtable/airtable";
 
-export async function assignGlovemakerAction(productionRecordId, glovemaker) {
+export async function reviewFailAction(productionRecordId, comments) {
   try {
     await base('Production').update(
       [{
         id: productionRecordId,
-        fields: { "Maker": glovemaker, "Reviewer Notes": "" }
+        fields: { 
+            "Reviewer Notes": comments,
+            "Maker": ""
+          }
       }],
       { typecast: true }
     );

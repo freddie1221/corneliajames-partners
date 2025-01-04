@@ -39,4 +39,11 @@ body {
   .heading {
     font-family: 'ITCCaslon224StdMedium', serif;
   }
+  .heading-secondary {
+    @apply text-center text-xl font-bold;
+  }
+  .btn {
+    @apply px-4 py-3 rounded-lg w-full border-2 uppercase tracking-widest;
+  }
+    
 }
