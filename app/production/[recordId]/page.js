@@ -2,27 +2,36 @@ import Image from 'next/image';
 import AssignGlovemaker from '../components/AssignGlovemaker';
 import ItemReview from '../components/ItemReview';
 import getProductionItem from '@/app/production/lib/airtable/getProductionItem';
+import Message from '../components/Message';
+
+async function getItem(recordId) {
+  const record = await getProductionItem(recordId);
+  return record;
+}
+
+export async function generateMetadata({ params }) {
+  const record = await getItem(params.recordId);
+  return {
+    title: record ? `${record.product} - ${record.option1} | Cornelia James Production` : 'Production Item Not Found',
+    description: record ? `Production details for ${record.product} in ${record.material}` : 'Production item details',
+  };
+}
 
 export default async function ProductionPage({ params }) {
-  const record = await getProductionItem(params.recordId);
-  const glovemakers = await GetGlovemakers();
-  const reviewers = await GetReviewers();
+  const [record, glovemakers, reviewers] = await Promise.all([
+    getItem(params.recordId),
+    GetGlovemakers(),
+    GetReviewers()
+  ]);
 
-  if (!record) {
-    return <div>Record not found</div>;
-  }
+  if (!record) { return <Message message="Record not found" />; }
   
   return (
-    <div className="mx-auto flex flex-col gap-4">
+    <>
       <ItemDetails record={record} />
-      <AssignGlovemaker 
-        glovemakers={glovemakers} 
-        record={record}
-        productionRecordId={record.productionRecordId} 
-        makerName={record.makerName}
-      />
+      <AssignGlovemaker record={record} glovemakers={glovemakers} />
       <ItemReview record={record} reviewers={reviewers} />
-    </div>
+    </>
   );  
 }
 
