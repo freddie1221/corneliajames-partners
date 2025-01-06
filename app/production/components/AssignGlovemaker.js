@@ -29,7 +29,7 @@ export default function AssignGlovemaker({glovemakers, record}) {
     }
   }
   
-  if (record.makerName) { return null; }
+  if (record.makerName || record.inventoryType === 'Purchased') { return null; }
   if (loading) { return <LoadingSpinner />; }
   if (message) { return <Message message={message} />; }
 

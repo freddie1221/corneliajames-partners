@@ -1,10 +1,9 @@
 import base from "@/app/production/lib/airtable/airtable";
 
-export default async function getProductionItem(recordId) {
+export default async function getOrderItem(recordId) {
 
   try {
     const record = await base('Order Items').find(recordId)
-
     return mapRecord(record)
     
   } catch (error) {
@@ -34,7 +33,6 @@ function mapRecord(record) {
     orderNotes: record.fields["DEV | Order Notes"]?.[0],
     productionRecordId: record.fields["Production Record ID"]?.[0],
     reviewerNotes: record.fields["Reviewer Notes"]?.[0],
-    makeable: record.fields["Makeable"],
-    inventoryType: record.fields["Inventory Type"],
+    inventoryType: record.fields["Inventory Type"]?.[0],
   }
 }

@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import AssignGlovemaker from '../components/AssignGlovemaker';
 import ItemReview from '../components/ItemReview';
-import getProductionItem from '@/app/production/lib/airtable/getProductionItem';
+import getOrderItem from '@/app/production/lib/airtable/getOrderItem';
 import Message from '../components/Message';
 
 async function getItem(recordId) {
-  const record = await getProductionItem(recordId);
+  const record = await getOrderItem(recordId);
   return record;
 }
 
