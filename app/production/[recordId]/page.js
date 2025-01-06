@@ -57,7 +57,7 @@ function ItemDetails({record}) {
       {attribute("Upper Arm Fit", record.uaf)}
       {attribute("Elbow Fit", record.ebf)}
       {attribute("Index Finger Fit", record.iff)}
-      {attribute("Enhancements", record.enhancements )}
+      {attribute("Enhancements", record.enhancements, "flex-col" )}
       {attribute("Enhancement Detailing", record.enhancementDetailing )}
       {attribute("Other Detailing", record.otherDetailing )}
       {attribute("Order Notes", record.orderNotes, "flex-col")}
