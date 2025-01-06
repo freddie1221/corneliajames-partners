@@ -51,9 +51,10 @@ function ItemDetails({record}) {
         height={600} 
         className="rounded-lg shadow-md mx-auto"
       />
+      {attribute("Colour", record.option1)}
       {attribute("Glove Size", record.option2)}
       {attribute("Fit Summary", record.fitSummary)}
-      {attribute("Length", record.length + " inches")}
+      {attribute("Length", record.length)}
       {attribute("Upper Arm Fit", record.uaf)}
       {attribute("Elbow Fit", record.ebf)}
       {attribute("Index Finger Fit", record.iff)}

@@ -12,7 +12,8 @@ export default function ItemReview({record, reviewers}) {
   const [message, setMessage] = useState(null);
   const [action, setAction] = useState('pass');
 
-  if (!record.makerName || record.reviewer) { return null }
+  if (record.reviewer) { return null }
+  if (!record.makerName && record.inventoryType === 'Made') { return null }
   if (loading) { return <LoadingSpinner />; }
   if (message) { return <Message message={message} />; }
 
