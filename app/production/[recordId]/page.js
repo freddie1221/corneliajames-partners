@@ -3,6 +3,7 @@ import AssignGlovemaker from '../components/AssignGlovemaker';
 import ItemReview from '../components/ItemReview';
 import getOrderItem from '@/app/production/lib/airtable/getOrderItem';
 import Message from '../components/Message';
+import { getGlovemakers, getReviewers } from '@/app/production/lib/airtable/getPeople';
 
 async function getItem(recordId) {
   const record = await getOrderItem(recordId);
@@ -20,11 +21,9 @@ export async function generateMetadata({ params }) {
 export default async function ProductionPage({ params }) {
   const [record, glovemakers, reviewers] = await Promise.all([
     getItem(params.recordId),
-    GetGlovemakers(),
-    GetReviewers()
+    getGlovemakers(),
+    getReviewers()
   ]);
-
-  console.log(record);
 
   if (!record) { return <Message message="Record not found" />; }
   
@@ -92,26 +91,3 @@ function attribute(name, value, flexDirection = "flex-row") {
     </div>
   )
 } 
-
-
-import base from '@/app/production/lib/airtable/airtable';
-
-async function GetGlovemakers() {
-  const glovemakers = await base('People').select({
-    filterByFormula: 'AND({Glovemaker} = 1, {Active} = 1)',
-    sort: [{field: 'Name', direction: 'asc'}],
-    fields: ['Name']
-  }).all()
-  return glovemakers.map(glovemaker => glovemaker.fields.Name)
-}
-
-async function GetReviewers() {
-  const reviewers = await base('People').select({
-    filterByFormula: 'AND({Operations} = 1, {Active} = 1)',
-    sort: [{field: 'Name', direction: 'desc'}],
-    fields: ['Name']
-  }).all()
-  return reviewers.map(reviewer => reviewer.fields.Name)
-}
-
-
