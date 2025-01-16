@@ -18,8 +18,7 @@ export default function CustomersPage() {
       window.Missive.on('change:conversations', (ids) => {
         fetchAndDisplaySenderEmail(ids);
       });
-    }
-    if ( window.Missive ) {
+      
       setMessage('Rendered on Missive');
     } else {
       setMessage('Not rendered on Missive');
