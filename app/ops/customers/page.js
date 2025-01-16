@@ -1,13 +1,7 @@
-"use client"
- 
-import { useSearchParams } from 'next/navigation'
- 
-export default function SearchBar() {
-  const searchParams = useSearchParams()
- 
-  const customer = searchParams.get('customer')
- 
-  // URL -> `/dashboard?search=my-project`
-  // `search` -> 'my-project'
-  return <>Customer: {customer}</>
+
+export default async function Customers({searchParams}) {
+  const email = (await searchParams).email
+  return (
+    <div>Email: {email}</div>
+  );
 }
