@@ -4,53 +4,35 @@ import { useEffect, useState } from 'react';
 
 export default function CustomersPage() {
   const [senderEmail, setSenderEmail] = useState('Loading...');
-  const [message, setMessage] = useState('checking...');
+  const [subject, setSubject] = useState('checking...');
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.Missive !== undefined) {
-      
-      // Initialize Missive event listeners
-      window.Missive.on('load', () => {
-        const conversationIds = window.Missive.getConversationIds();
-        fetchAndDisplaySenderEmail(conversationIds);
-      });
-
-      window.Missive.on('change:conversations', (ids) => {
-        fetchAndDisplaySenderEmail(ids);
-      });
-      
-      setMessage('Rendered on Missive');
-    } else {
-      setMessage('Not rendered on Missive');
-    }
+    Missive.on('change:conversations', (ids) => {
+      Missive.fetchConversations(ids).then((conversations) => {
+        if (conversations.length != 1) {
+          // Do nothing if multiple conversations are selected.
+          return
+        }
+    
+        var message = conversations[0].latest_message
+        if (!message || !message.from_field) {
+          // Do nothing if conversation has no message (only chat comments) or if
+          // message has no From field.
+          return
+        }
+    
+        var from = message.from_field
+        setSenderEmail(from.name + ' ' + from.address)
+        setSubject(message.subject)
+      })
+    })
   }, []);
-
-  const fetchAndDisplaySenderEmail = (ids) => {
-    if (ids.length !== 1) {
-      setSenderEmail('No conversation selected or multiple selected');
-      return;
-    }
-
-    window.Missive.fetchConversations(ids).then((conversations) => {
-      const latestMessage = conversations[0]?.latest_message;
-      const email = latestMessage?.from_field?.address;
-
-      if (email) {
-        setSenderEmail(email);
-      } else {
-        setSenderEmail('No email found for the selected conversation');
-      }
-    }).catch((err) => {
-      console.error('Error fetching conversation data:', err);
-      setSenderEmail('Error fetching email');
-    });
-  };
 
   return (
     <div>
       <h1>Customer Information</h1>
       <p>Email: <span>{senderEmail}</span></p>
-      <p>Message: <span>{message}</span></p>
+      <p>Subject: <span>{subject}</span></p>
     </div>
   );
 }
