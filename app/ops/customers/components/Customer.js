@@ -7,7 +7,7 @@ export default function CustomersPage() {
   const [message, setMessage] = useState('checking...');
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.Missive) {
+    if (typeof window !== 'undefined' && window.Missive !== undefined) {
       
       // Initialize Missive event listeners
       window.Missive.on('load', () => {
