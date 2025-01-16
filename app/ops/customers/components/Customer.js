@@ -51,6 +51,7 @@ export default function CustomersPage() {
     <div>
       <h1>Customer Information</h1>
       <p>Email: <span>{senderEmail}</span></p>
+      <p>Message: <span>{message}</span></p>
     </div>
   );
 }
