@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function CustomersPage() {
   const [senderEmail, setSenderEmail] = useState('Loading...');
+  const [message, setMessage] = useState('checking...');
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.Missive) {
@@ -17,6 +18,11 @@ export default function CustomersPage() {
       window.Missive.on('change:conversations', (ids) => {
         fetchAndDisplaySenderEmail(ids);
       });
+    }
+    if ( window.Missive ) {
+      setMessage('Rendered on Missive');
+    } else {
+      setMessage('Not rendered on Missive');
     }
   }, []);
 
