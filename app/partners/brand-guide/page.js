@@ -3,11 +3,11 @@ import DownloadButton from '@/components/DownloadButton';
 export default function BrandGuide() {
   return (
     <div className="container mx-auto p-10 text-gray-900">
-      <h1 className="text-5xl font-heading mb-8">Brand Guide</h1>
+      <h1 className="text-5xl heading-primary mb-8">Brand Guide</h1>
       
       {/* Colors Section */}
       <section className="mb-16">
-        <h2 className="text-3xl font-heading font-bold mb-4">Colors</h2>
+        <h2 className="text-3xl heading-primary font-bold mb-4">Colors</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
             <div className="w-32 h-32 bg-primCol rounded-lg mb-2"></div>
@@ -24,10 +24,10 @@ export default function BrandGuide() {
       
       {/* Fonts Section */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold font-heading mb-4">Fonts</h2>
+        <h2 className="text-3xl font-bold heading-primary mb-4">Fonts</h2>
         <div className="space-y-8">
           <div>
-            <p className="text-2xl font-heading">ITC Caslon No 224 Medium (standard)</p>
+            <p className="text-2xl heading-primary">ITC Caslon No 224 Medium (standard)</p>
             <p className="text-lg text-gray-600">Headings</p>
             <DownloadButton url="/fonts/ITC_Caslon_No_224_Medium.ttf" title="ITC Caslon No 224 Medium" />
           </div>
@@ -41,7 +41,7 @@ export default function BrandGuide() {
       
       {/* Logos Section */}
       <section>
-      <h2 className="text-3xl font-bold font-heading mb-4">Logos</h2>
+      <h2 className="text-3xl font-bold heading-primary mb-4">Logos</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
             <p className="text-lg">Primary Logo</p>
@@ -57,7 +57,7 @@ export default function BrandGuide() {
       </section>
 
       <section>
-      <h2 className="text-3xl font-bold font-heading mb-4">Other Assets</h2>
+      <h2 className="text-3xl font-bold heading-primary mb-4">Other Assets</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
             <img src="/cornelia.png" alt="Logo 1" className="w-300 object-contain mb-2" />

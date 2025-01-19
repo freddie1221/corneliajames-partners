@@ -39,11 +39,33 @@ body {
   .heading {
     font-family: 'ITCCaslon224StdMedium', serif;
   }
+  .heading-primary {
+    @apply text-center text-xl uppercase tracking-widest ;
+  }
   .heading-secondary {
-    @apply text-center text-xl font-bold;
+    @apply text-center text-lg uppercase mb-3;
   }
   .btn {
-    @apply px-4 py-3 rounded-lg w-full border-2 uppercase tracking-widest;
+    @apply px-6 py-3 rounded-md font-semibold whitespace-nowrap text-center disabled:opacity-50;
   }
-    
+  .btn-primary {
+    @apply text-white transition-colors duration-200 font-semibold shadow-md bg-indigo-800;
+  }
+  .btn-secondary {
+    @apply text-gray-800 transition-colors duration-200 font-semibold bg-white;
+  }
+  .btn-tertiary {
+    @apply text-indigo-800 hover:bg-indigo-800 hover:text-white transition-colors duration-200 border border-indigo-800;
+  }
+  .annotation {
+    @apply text-xs text-gray-700 uppercase tracking-wide;
+  }
+}
+
+.checkbox-custom:checked::after {
+  content: '✔';
+  display: block;
+  text-align: center;
+  color: white;
+  font-size: 24px;
 }

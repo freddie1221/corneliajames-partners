@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <nav className="bg-primCol p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-secCol text-2xl font-heading">Cornelia James</div>
+        <div className="text-secCol text-2xl heading-primary">Cornelia James</div>
         <div className="space-x-6">
           <Link href="/" className="text-secCol hover:text-white transition duration-300">
             Home

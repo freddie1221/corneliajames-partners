@@ -15,11 +15,12 @@ module.exports = {
       colors: {
         primCol: '#1a1a1a',
         secCol: '#F5F3ED', // Your custom hex color
-      },
-      fontFamily: {
-        'heading': ['ITC Caslon'],
-        'body': ['Avenir Next', 'sans-serif'],
-      },
+        navy: {
+          DEFAULT: '#1504D3',  // Classic navy
+          light: '#1B2B4D',    // Midnight blue
+          dark: '#090985',     // Dark navy
+        },
+      }
     },
   },
   plugins: [require('tailwindcss/nesting')],
