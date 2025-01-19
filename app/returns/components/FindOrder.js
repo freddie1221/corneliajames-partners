@@ -30,7 +30,7 @@ export default function FindOrder() {
     }
 
     try {
-      const response = await fetch('/api/validate', {
+      const response = await fetch('/returns/api/validate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, orderNumber }),
@@ -38,7 +38,7 @@ export default function FindOrder() {
 
       if (response.ok) {
         const orderId = await response.json();
-        router.push(`/orders/${orderId}`);
+        router.push(`/returns/orders/${orderId}`);
       } else {
         setError('Order not found');
       }

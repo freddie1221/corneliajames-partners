@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { validateOrder } from '@/lib/api/validateOrder';
+import { validateOrder } from '@/app/returns/lib/api/validateOrder';
 
 export async function POST(req) {
   const { email, orderNumber } = await req.json();

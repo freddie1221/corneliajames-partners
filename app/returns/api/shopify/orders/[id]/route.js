@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { getOrder } from "@/lib/api/getOrder";
+import { getOrder } from "@/app/returns/lib/api/getOrder";
 
-export async function GET(req, { params }) {
+export async function GET({ params }) {
   const { id } = params;
 
   try {    
