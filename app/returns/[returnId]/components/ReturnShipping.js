@@ -96,8 +96,8 @@ function ReturnDocs({ returnDocs, countryCode }){
             Please click the link below to book your collection with DHL 
           </p>
           <ol className="list-decimal text-gray-600 text-sm pl-3 mb-2">
-            <li>Select "no", that you don't need to create a shipping label</li>
-            <li>Select "I have a DHL Waybill Number" in the dropdown menu</li>
+            <li>Select no, that you don&apos;t need to create a shipping label</li>
+            <li>Select &ldquo;I have a DHL Waybill Number&rdquo; in the dropdown menu</li>
             <li>Enter your waybill number, which is <span className="font-bold text-navy">{returnDocs.number}</span></li>
           </ol>
           <a href={dhlBookingLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-fit">Book Collection</a>
@@ -111,7 +111,7 @@ function ReturnDocs({ returnDocs, countryCode }){
           <div className="heading-tertiary">Packing Instructions</div>
           <p className="text-gray-600 text-sm">Please print and attach the label to your return package.</p>
           <p className="text-gray-600 text-sm">Please also write on the outside of the package, in large letters, 
-            <span className='text-navy font-bold'>"Goods being Returned to manufacturer. Returned goods relief from Duty"</span>
+            <span className='text-navy font-bold'>&ldquo;Goods being Returned to manufacturer. Returned goods relief from Duty&rdquo;</span>
           </p>
           <p className="text-gray-600 text-sm">This is really important, because it stops your return shipment being held up in customs.</p>
         </div>

@@ -34,10 +34,6 @@ export default function ReturnForm({ order }) {
 	const { createReturn, loading, error, success } = useCreateReturn();
 	const { createStoreCredit } = useStoreCredit();
 
-	if(order.totalPrice === 0) {
-		return <Message text="This order has no value to refund." />
-	}
-
 	useEffect(() => {
 		const { explainer, feePercentage } = calculateRestockingFee({
 			returnType, 
@@ -65,8 +61,11 @@ export default function ReturnForm({ order }) {
 		setTaxDeduction(taxDeduction);
 		setShippingFee(shippingFee)
 
-	}, [returnType, itemsCount, includeShipping, returnValue])
+	}, [returnType, itemsCount, includeShipping, returnValue, order])
 
+	if(order.totalPrice === 0) {
+		return <Message text="This order has no value to refund." />
+	}
 
 	const handleSubmit = async () => {
 		const lineItemsAndFee = returnLineItems.map((item) => ({

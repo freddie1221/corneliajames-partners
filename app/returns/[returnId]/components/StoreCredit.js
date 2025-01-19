@@ -16,8 +16,8 @@ export default function StoreCredit({ returnData, returnType, storeCreditAmount,
         </div>
           
         <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-light">Store Credit Hasn't Arrived?</h3>
-          <span>If you don't receive an email notifying you of your store credit in a couple of minutes, click below to view your account where you should see it. Alternatively, please contact us.</span>
+          <h3 className="text-lg font-light">Store Credit Hasn&apos;t Arrived?</h3>
+          <span>If you don&apos;t receive an email notifying you of your store credit in a couple of minutes, click below to view your account where you should see it. Alternatively, please contact us.</span>
         </div>
         <div className="flex gap-4">
           <Link href="https://account.corneliajames.com/profile" className="btn btn-primary">View Account</Link>
