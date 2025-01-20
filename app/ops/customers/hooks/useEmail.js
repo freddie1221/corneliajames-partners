@@ -50,7 +50,7 @@ export default function useEmail() {
     });
   };
   
-  email = "fredjlawson@gmail.com"
+  setEmail("fredjlawson@gmail.com")
 
   return { email, loading, error }
 }
