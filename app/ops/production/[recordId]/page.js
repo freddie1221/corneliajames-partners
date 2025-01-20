@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import AssignGlovemaker from '../components/AssignGlovemaker';
 import ItemReview from '../components/ItemReview';
-import getOrderItem from '@/app/production/lib/airtable/getOrderItem';
+import ItemAdjustment from '../components/ItemAdjustment';
+import getOrderItem from '@/app/ops/production/lib/airtable/getOrderItem';
+import { getGlovemakers, getReviewers } from '@/app/ops/production/lib/airtable/getPeople';
 import Message from '../components/Message';
-import { getGlovemakers, getReviewers } from '@/app/production/lib/airtable/getPeople';
 
 async function getItem(recordId) {
   const record = await getOrderItem(recordId);
@@ -25,12 +26,15 @@ export default async function ProductionPage({ params }) {
     getReviewers()
   ]);
 
+  console.log(record)
+
   if (!record) { return <Message message="Record not found" />; }
   
   return (
     <>
       <ItemDetails record={record} />
       <AssignGlovemaker record={record} glovemakers={glovemakers} />
+      <ItemAdjustment record={record} glovemakers={glovemakers} />
       <ItemReview record={record} reviewers={reviewers} />
     </>
   );  
@@ -62,6 +66,8 @@ function ItemDetails({record}) {
       {attribute("Other Detailing", record.otherDetailing )}
       {attribute("Order Notes", record.orderNotes, "flex-col")}
       {attribute("Glovemaker", record.makerName)}
+      {attribute("Adjusted By", record.adjusterName)}
+      {attribute("Adjustment", record.adjustment, "flex-col")}
       {attribute("Reviewer", record.reviewer)}
       {attribute("Reviewer Notes", record.reviewerNotes, "flex-col")}
     </>

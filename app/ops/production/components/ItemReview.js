@@ -14,6 +14,7 @@ export default function ItemReview({record, reviewers}) {
 
   if (record.reviewer) { return null }
   if (!record.makerName && record.inventoryType === 'Made') { return null }
+  if (record.awaitingAdjustment) { return null }
   if (loading) { return <LoadingSpinner />; }
   if (message) { return <Message message={message} />; }
 
@@ -31,12 +32,12 @@ function ReviewOptions({setAction, action}) {
   return (
     <div className="flex gap-2 mb-2">
       <button 
-        className={`btn bg-green-500 text-white ${action === 'pass' ? 'border-gray-900' : 'border-green-500'}`} 
+        className={`btn w-full bg-green-500 text-white ${action === 'pass' ? 'border-gray-900' : 'border-green-500'}`} 
         onClick={() => setAction('pass')}
         disabled={action === 'pass'}
       >Pass</button>
       <button 
-        className={`btn bg-red-500 text-white ${action === 'fail' ? 'border-gray-900' : 'border-red-500'}`} 
+        className={`btn w-full bg-red-500 text-white ${action === 'fail' ? 'border-gray-900' : 'border-red-500'}`} 
         onClick={() => setAction('fail')}
         disabled={action === 'fail'}
       >Fail</button>
