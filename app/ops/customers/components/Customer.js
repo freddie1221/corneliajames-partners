@@ -7,8 +7,7 @@ export default function CustomersPage() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.Missive) {
-
-      // Initialize Missive event listeners
+      
       window.Missive.on('load', () => {
         const conversationIds = window.Missive.getConversationIds();
         fetchAndDisplaySenderEmail(conversationIds);

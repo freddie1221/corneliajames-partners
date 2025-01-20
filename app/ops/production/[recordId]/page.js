@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import getOrderItem from '@/app/ops/production/lib/airtable/getOrderItem';
+import getOrderItem from '@/app/ops/lib/airtable/getOrderItem';
 import AssignGlovemaker from '../components/AssignGlovemaker';
 import AssignAdjuster from '../components/AssignAdjuster';
 import ItemReview from '../components/ItemReview';
-import { getGlovemakers, getReviewers } from '@/app/ops/production/lib/airtable/getPeople';
+import { getGlovemakers, getReviewers } from '@/app/ops/lib/airtable/getPeople';
 import Message from '../components/Message';
 
 async function getItem(recordId) {

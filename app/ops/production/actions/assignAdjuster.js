@@ -1,6 +1,6 @@
 'use server'
 
-import base from "@/app/ops/production/lib/airtable/airtable";
+import base from "@/app/ops/lib/airtable/airtable";
 
 export async function assignAdjusterAction(productionRecordId, adjuster) {
   try {
