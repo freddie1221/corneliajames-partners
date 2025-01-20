@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 
 export default function useEmail() {
-  const [email, setEmail] = useState();
-
+  const [email, setEmail] = useState('fredjlawson@gmail.com');
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.Missive) {
@@ -28,17 +27,18 @@ export default function useEmail() {
     if (ids.length !== 1) { return }
 
     window.Missive.fetchConversations(ids).then((conversations) => {
-      const latestMessage = conversations[0]?.latest_message
-      const email = latestMessage?.from_field?.address
+      const senderEmail = conversations[0]?.latest_message?.from_field?.address
 
+      if (senderEmail) { setEmail(senderEmail) }
+      else { setEmail('fredjlawson@gmail.com') }
 
-      if (email) { setEmail(email) }
-      else { setError('No email found for the selected conversation') }
+      console.log(senderEmail)
 
     }).catch((err) => {
       console.error('Error fetching conversation data:', err);
     });
   };
+
 
   return { email }
 }

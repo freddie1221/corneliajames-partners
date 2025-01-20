@@ -6,6 +6,8 @@ export async function GET(request) {
   const email = searchParams.get('email')
   
   const data = await getCustomer(email)
+
+  console.log(data)
   return NextResponse.json(data)
 
 }

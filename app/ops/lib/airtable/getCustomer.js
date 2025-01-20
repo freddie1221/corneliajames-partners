@@ -5,13 +5,19 @@ export default async function getCustomer(email) {
   const customerRecords = await base('Customers').select({
     filterByFormula: `{Email} = '${email}'`
   }).all()
-  
   if (customerRecords.length === 0) { return null }
   
   const customer = mapRecord(customerRecords[0])
+  
 
-  const orderRecords = await base('Orders').find(customer.orders[0])
-  const orders = mapOrder(orderRecords)
+  const orderRecords = await base('Orders').select({
+    filterByFormula: `OR(${customer.orders.map(id => `RECORD_ID() = '${id}'`).join(',')})`
+  }).all()
+  
+  const orders = orderRecords.map(mapOrder)
+
+  // console.log(customer)
+  // console.log(orders)
 
   return { customer, orders }
 }
@@ -28,7 +34,10 @@ function mapRecord(customer) {
 
 function mapOrder(order) {
   return {
-    id: order.id,
-    number: order.fields['Order Number']
+    recordId: order.id,
+    number: order.fields['Order Number'],
+    status: order.fields['Status'],
+    id: order.fields['Order ID'],
+    date: order.fields['Created At']
   }
 }
