@@ -67,7 +67,6 @@ function ItemDetails({record}) {
       {attribute("Order Notes", record.orderNotes, "flex-col")}
       {attribute("Glovemaker", record.makerName)}
       {attribute("Adjusted By", record.adjusterName)}
-      {attribute("Adjustment", record.adjustment, "flex-col")}
       {attribute("Reviewer", record.reviewer)}
       {attribute("Reviewer Notes", record.reviewerNotes, "flex-col")}
     </>
