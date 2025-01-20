@@ -41,7 +41,6 @@ export default function CustomerPage() {
 
   return (
     <div>
-      <p>Sender Email: {email}</p>
       <Customer data={data} />
     </div>
   );

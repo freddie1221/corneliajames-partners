@@ -1,8 +1,19 @@
 
+
 export default function Customer({data}) {
   return (
     <div className="flex flex-col gap-2 text-normal">
-      {attribute("Customer", data.customer.name)}
+      <a
+        href={`https://airtable.com/appKPB1F4sKXKlfje/pag0u8K1RckEuLTrx?e8i5L=sfsxnuxLmURGTVwQs&4NOeH=${data.customer.recordId}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:bg-gray-100"
+      >  
+        <div className="flex flex-col bg-white p-4 rounded-lg w-full items-center hover:bg-gray-100">
+          <div className="w-full">{data.customer.name}</div>
+          <div className="w-full text-lg">{data.customer.email}</div>
+        </div>
+      </a>
       {ordersList(data.orders)}
     </div>
   )

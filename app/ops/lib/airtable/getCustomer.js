@@ -25,7 +25,7 @@ export default async function getCustomer(email) {
 
 function mapRecord(customer) {
   return {
-    id: customer.id,
+    recordId: customer.id,
     name: customer.fields.Name,
     email: customer.fields.Email,
     orders: customer.fields.Orders,
