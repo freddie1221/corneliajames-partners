@@ -36,9 +36,9 @@ export default function AssignGlovemaker({glovemakers, record}) {
   return (
     <div className="flex flex-col gap-2 mt-2">
       <h2 className="heading-secondary">Glovemaker Assignment</h2>
-      <form className="flex flex-col gap-3 mt-4" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
         {glovemakers.map(glovemaker => (
-          <div key={glovemaker} className="flex items-center gap-3 bg-white px-4 py-2 rounded-lg">
+          <div key={glovemaker} className="flex items-center gap-3 bg-white px-4 py-2 rounded-lg border border-blue-500">
             <input  
               type="radio"
               id={glovemaker}
@@ -55,7 +55,7 @@ export default function AssignGlovemaker({glovemakers, record}) {
             </label>
           </div>
         ))}
-        <button type="submit" className="bg-blue-500 text-white px-4 py-3 rounded-lg">Assign</button>
+        <button type="submit" className="bg-blue-500 text-white btn uppercase tracking-wider">Assign</button>
       </form>
     </div>
   );
