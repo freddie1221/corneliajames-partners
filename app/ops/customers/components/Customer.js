@@ -10,8 +10,8 @@ export default function Customer({data}) {
         className="hover:bg-gray-100"
       >  
         <div className="flex flex-col bg-white p-4 rounded-lg w-full items-center hover:bg-gray-100">
-          <div className="w-full text-sm">{data.customer.email}</div>
           <div className="w-full ">{data.customer.name}</div>
+          <div className="w-full text-sm">{data.customer.email}</div>
         </div>
       </a>
       {ordersList(data.orders)}
@@ -46,14 +46,25 @@ function ordersList(orders) {
 }
 
 function Order({order}) {
+  if(!order) { return null }
+
   return(
     <div className="flex flex-col bg-white px-4 py-2 rounded-lg w-full hover:bg-gray-100">
-      <div className="flex flex-row gap-2">
-        <span>{order.number}</span>
-        <span>・</span>
-        <span className="text-sm">{formatDate(order.date)}</span>
+      <div className="flex flex-row w-full mb-2">
+        <span className="w-1/3">{order.number}</span>
+        <span className="w-1/3 justify-center">{formatDate(order.date)}</span>
+        <span className="w-1/3 justify-end text-right">{order.status}</span>
       </div>
-      <div>{order.status}</div>
+      <OrderItems variants={order.variants} />
+    </div>
+  )
+}
+
+function OrderItems({ variants }) {
+  if (!variants) { return null }
+  return(
+    <div className="flex flex-col text-sm text-gray-500">
+      {variants.map(item => <div>{item}</div>)}
     </div>
   )
 }

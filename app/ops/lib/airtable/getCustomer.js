@@ -1,28 +1,21 @@
 import base from './airtable'
 
-export default async function getCustomer(email) {
+export default async function getCustomerData(email) {
   
   const customerRecords = await base('Customers').select({
     filterByFormula: `{Email} = '${email}'`
   }).all()
+  
   if (customerRecords.length === 0) { return null }
+  const customer = mapCustomer(customerRecords[0])
   
-  const customer = mapRecord(customerRecords[0])
-  if(customer.orders.length === 0) { return { customer, orders: [] } }
-
-  const orderRecords = await base('Orders').select({
-    filterByFormula: `OR(${customer.orders.map(id => `RECORD_ID() = '${id}'`).join(',')})`,
-    sort: [{field: 'Order Number', direction: 'desc'}]
-  }).all()
-  
-  const orders = orderRecords.map(mapOrder)
-
+  const orders = await listRecords('Orders', customer.orders, 'Order Number', mapOrder)
 
   return { customer, orders }
 }
 
 
-function mapRecord(customer) {
+function mapCustomer(customer) {
   return {
     recordId: customer.id,
     name: customer.fields.Name,
@@ -31,12 +24,34 @@ function mapRecord(customer) {
   }
 }
 
+async function listRecords(table, recordIds, sortField, map) {
+  
+  if(recordIds.length === 0) { return [] }
+  
+  const records = await base(table).select({
+    filterByFormula: `OR(${recordIds.map(id => `RECORD_ID() = '${id}'`).join(',')})`,
+    sort: [{field: sortField, direction: 'desc'}]
+  }).all()
+  
+  return records.map(map)
+}
+
+
 function mapOrder(order) {
   return {
     recordId: order.id,
     number: order.fields['Order Number'],
     status: order.fields['Status'],
     id: order.fields['Order ID'],
-    date: order.fields['Created At']
+    date: order.fields['Created At'],
+    orderItems: order.fields['Order Items'],
+    variants: order.fields['Variants']
+  }
+}
+
+function mapOrderItem(orderItem) {
+  return {
+    recordId: orderItem.id,
+    name: orderItem.fields['Product Name'],
   }
 }
