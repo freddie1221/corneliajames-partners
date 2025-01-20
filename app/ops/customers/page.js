@@ -11,6 +11,7 @@ export default async function Customers() {
 
   if (loading) { return <LoadingSpinner /> }
   if (error) { return <Message text={error} /> }
+  if (!customer) { return <Message text="No customer found" /> }
 
   return (
     <div>
