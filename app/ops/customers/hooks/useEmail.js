@@ -49,8 +49,6 @@ export default function useEmail() {
       setLoading(false)
     });
   };
-  
-  setEmail("fredjlawson@gmail.com")
 
   return { email, loading, error }
 }
