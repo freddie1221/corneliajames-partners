@@ -28,15 +28,15 @@ export default function Customer() {
   }, [email])
 
 
-
   if (loading) { return <LoadingSpinner /> }
   if (error) { return <Message text={error} /> }
   if (!customer) { return <Message text="No customer found" /> }
 
   return (
     <div>
-      <p>{customer.name}</p>
-      <p>{customer.email}</p>
+      <p>Sender Email: {email}</p>
+      <p>Customer Name: {customer.name}</p>
+      <p>Customer Email: {customer.email}</p>
     </div>
   );
 }
