@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import AssignGlovemaker from '../components/AssignGlovemaker';
-import ItemReview from '../components/ItemReview';
-import ItemAdjustment from '../components/ItemAdjustment';
 import getOrderItem from '@/app/ops/production/lib/airtable/getOrderItem';
+import AssignGlovemaker from '../components/AssignGlovemaker';
+import AssignAdjuster from '../components/AssignAdjuster';
+import ItemReview from '../components/ItemReview';
 import { getGlovemakers, getReviewers } from '@/app/ops/production/lib/airtable/getPeople';
 import Message from '../components/Message';
 
@@ -34,7 +34,7 @@ export default async function ProductionPage({ params }) {
     <>
       <ItemDetails record={record} />
       <AssignGlovemaker record={record} glovemakers={glovemakers} />
-      <ItemAdjustment record={record} glovemakers={glovemakers} />
+      <AssignAdjuster record={record} glovemakers={glovemakers} />
       <ItemReview record={record} reviewers={reviewers} />
     </>
   );  
@@ -90,7 +90,7 @@ function attribute(name, value, flexDirection = "flex-row") {
     )
   }
   return( 
-    <div className={`flex ${flexDirection} bg-white p-4 rounded-lg w-full`}>
+    <div className={`flex ${flexDirection} bg-white p-4 rounded-lg w-full items-center`}>
       <div className="text-gray-700 w-full">{name}</div>
       <div className="w-full text-lg">{value}</div>
     </div>

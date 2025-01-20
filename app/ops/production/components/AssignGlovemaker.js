@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { assignGlovemakerAction } from "@/app/production/actions/glovemaker";
+import { assignGlovemakerAction } from "@/app/ops/production/actions/assignGlovemaker";
 import Message from "./Message";
 
 export default function AssignGlovemaker({glovemakers, record}) {
