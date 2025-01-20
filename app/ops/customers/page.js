@@ -1,9 +1,9 @@
 "use client"
 
-import getEmail from './utils/getEmail'
+import GetEmail from './utils/getEmail'
 
 export default async function Customers({searchParams}) {
-  const email = getEmail()
+  const email = GetEmail()
   return (
     <div>
       <p>Email: {email}</p>

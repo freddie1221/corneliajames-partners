@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function getEmail() {
+export default function GetEmail() {
   const [email, setEmail] = useState(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function getEmail() {
         if (!message || !message.from_field) {
           return
         }
-        
+
         setEmail(message.from_field.address);
       });
     });
