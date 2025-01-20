@@ -50,5 +50,5 @@ export default function useEmail() {
     });
   };
 
-  return { email, loading, error }
+  return { email }
 }
