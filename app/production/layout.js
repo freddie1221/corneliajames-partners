@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <main className="max-w-2xl mx-auto flex flex-col gap-4">
+    <main className="max-w-2xl mx-auto flex flex-col gap-2">
       {children}
     </main>
   );

@@ -26,8 +26,6 @@ export default async function ProductionPage({ params }) {
     getReviewers()
   ]);
 
-  console.log(record)
-
   if (!record) { return <Message message="Record not found" />; }
   
   return (
