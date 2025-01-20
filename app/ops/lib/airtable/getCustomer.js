@@ -2,18 +2,33 @@ import base from './airtable'
 
 export default async function getCustomer(email) {
   
-  const records = await base('Customers').select({
+  const customerRecords = await base('Customers').select({
     filterByFormula: `{Email} = '${email}'`
   }).all()
   
-  return mapRecord(records[0])
+  if (customerRecords.length === 0) { return null }
+  
+  const customer = mapRecord(customerRecords[0])
+
+  const orderRecords = await base('Orders').find(customer.orders[0])
+  const orders = mapOrder(orderRecords)
+
+  return { customer, orders }
 }
 
 
-function mapRecord(record) {
+function mapRecord(customer) {
   return {
-    id: record.id,
-    name: record.fields.Name,
-    email: record.fields.Email,
+    id: customer.id,
+    name: customer.fields.Name,
+    email: customer.fields.Email,
+    orders: customer.fields.Orders,
+  }
+}
+
+function mapOrder(order) {
+  return {
+    id: order.id,
+    number: order.fields['Order Number']
   }
 }

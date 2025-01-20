@@ -4,20 +4,21 @@ import { useState, useEffect } from 'react'
 import useEmail from './hooks/useEmail'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { Message } from '@/components/Elements'
-import getCustomer from '@/app/ops/lib/airtable/getCustomer'
+import Customer from './components/Customer'
 
-export default function Customer() {
+export default function CustomerPage() {
   const { email } = useEmail()
-  const [customer, setCustomer] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [data, setData] = useState(null)
 
   useEffect(() => {
-    if (email) {
+    if (email) { 
       setLoading(true)
-      getCustomer(email)
-        .then(customer => {
-          setCustomer(customer)
+      fetch(`/ops/api/customers?email=${email}`)
+        .then(response => response.json())
+        .then(responseData => {
+          setData(responseData)
           setLoading(false)
         })
         .catch(err => {
@@ -27,16 +28,21 @@ export default function Customer() {
     }
   }, [email])
 
-
   if (loading) { return <LoadingSpinner /> }
   if (error) { return <Message text={error} /> }
-  if (!customer) { return <Message text="No customer found" /> }
+  if (!data) { 
+    return( 
+      <div>
+        <p>Sender Email: {email}</p>
+        <Message text="No customer found" />
+      </div>
+    ) 
+  }
 
   return (
     <div>
       <p>Sender Email: {email}</p>
-      <p>Customer Name: {customer.name}</p>
-      <p>Customer Email: {customer.email}</p>
+      <Customer data={data} />
     </div>
   );
 }
