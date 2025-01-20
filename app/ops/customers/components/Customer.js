@@ -10,8 +10,8 @@ export default function Customer({data}) {
         className="hover:bg-gray-100"
       >  
         <div className="flex flex-col bg-white p-4 rounded-lg w-full items-center hover:bg-gray-100">
-          <div className="w-full">{data.customer.name}</div>
-          <div className="w-full text-lg">{data.customer.email}</div>
+          <div className="w-full text-sm">{data.customer.email}</div>
+          <div className="w-full ">{data.customer.name}</div>
         </div>
       </a>
       {ordersList(data.orders)}
@@ -25,8 +25,8 @@ function attribute(name, value) {
   }
   return( 
     <div className="flex flex-col bg-white p-4 rounded-lg w-full items-center">
-      <div className="w-full">{name}</div>
-      <div className="w-full text-lg">{value}</div>
+      <div className="w-full text-sm">{name}</div>
+      <div className="w-full ">{value}</div>
     </div>
   )
 }
@@ -47,9 +47,12 @@ function ordersList(orders) {
 
 function Order({order}) {
   return(
-    <div className="flex flex-col bg-white px-4 py-2 rounded-lg w-full">
-      <div>{order.number}</div>
-      <div>{formatDate(order.date)}</div>
+    <div className="flex flex-col bg-white px-4 py-2 rounded-lg w-full hover:bg-gray-100">
+      <div className="flex flex-row gap-2">
+        <span>{order.number}</span>
+        <span>・</span>
+        <span className="text-sm">{formatDate(order.date)}</span>
+      </div>
       <div>{order.status}</div>
     </div>
   )

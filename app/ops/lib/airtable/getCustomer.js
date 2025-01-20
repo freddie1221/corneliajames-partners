@@ -8,16 +8,15 @@ export default async function getCustomer(email) {
   if (customerRecords.length === 0) { return null }
   
   const customer = mapRecord(customerRecords[0])
-  
+  if(customer.orders.length === 0) { return { customer, orders: [] } }
 
   const orderRecords = await base('Orders').select({
-    filterByFormula: `OR(${customer.orders.map(id => `RECORD_ID() = '${id}'`).join(',')})`
+    filterByFormula: `OR(${customer.orders.map(id => `RECORD_ID() = '${id}'`).join(',')})`,
+    sort: [{field: 'Order Number', direction: 'desc'}]
   }).all()
   
   const orders = orderRecords.map(mapOrder)
 
-  // console.log(customer)
-  // console.log(orders)
 
   return { customer, orders }
 }
