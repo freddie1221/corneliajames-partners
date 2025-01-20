@@ -1,12 +1,11 @@
 "use client"
 
-import GetEmail from './utils/getEmail'
+import Customer from './components/Customer'
 
-export default async function Customers({searchParams}) {
-  const email = GetEmail()
+export default async function Customers() {
   return (
     <div>
-      <p>Email: {email}</p>
+      <Customer />
     </div>
   );
 }
