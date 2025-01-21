@@ -64,7 +64,7 @@ function OrderItems({ variants }) {
   if (!variants) { return null }
   return(
     <div className="flex flex-col text-sm text-gray-500">
-      {variants.map(item => <div>{item}</div>)}
+      {variants.map((item, index) => <div key={index}>{item}</div>)}
     </div>
   )
 }
