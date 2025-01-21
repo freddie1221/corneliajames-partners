@@ -30,7 +30,7 @@ export default function CustomerPage() {
 
   if (loading) { return <LoadingSpinner /> }
   if (error) { return <Message text={error} /> }
-  if (!data) { return <Message text="No customer found for this email" /> }
+  if (!data || !data.customer) { return <Message text="No customer found for this email" /> }
   
 
   return <Customer data={data} />
