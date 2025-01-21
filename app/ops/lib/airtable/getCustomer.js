@@ -1,21 +1,16 @@
 import base from './airtable'
 
 export default async function getCustomerData(email) {
-
-  console.log('Searching for customer with email:', email)
   
   const customerRecords = await base('Customers').select({
     filterByFormula: `{Email | DEV} = '${email}'`
   }).all()
-
-  console.log('Customer records:', customerRecords)
   
   if (customerRecords.length === 0) { 
     return null
   }
 
   const customer = mapCustomer(customerRecords[0])
-  
   const orders = await listRecords('Orders', customer.orders, 'Order Number', mapOrder)
 
   return { customer, orders }

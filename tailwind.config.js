@@ -20,7 +20,10 @@ module.exports = {
           light: '#1B2B4D',    // Midnight blue
           dark: '#090985',     // Dark navy
         },
-      }
+      },
+      fontFamily: {
+        'avenir': ['AvenirNextLTPro', 'sans-serif'],
+      },
     },
   },
   plugins: [require('tailwindcss/nesting')],
