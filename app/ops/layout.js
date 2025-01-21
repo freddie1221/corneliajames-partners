@@ -1,4 +1,4 @@
-import MixpanelInitializer from './lib/analytics/mixpanel'
+
 import Image from 'next/image';
 import logo from '@/public/logo.png';
 
@@ -7,14 +7,12 @@ export const metadata = {
   description: "Our returns and store credit portal",
 };
 
-export default function ReturnsLayout({ children }) {
+export default function OpsLayout({ children }) {
   return (
     <div className="">
-      <Header />
-      <main className="min-h-screen text-gray-800 font-avenir max-w-2xl mx-auto flex flex-col px-4 py-8 md:p-8 bg-gray-200">
+      <main className="max-w-2xl mx-auto bg-gray-200 p-2">
         {children}
       </main>
-      <MixpanelInitializer />
     </div>
   )
 }

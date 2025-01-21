@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col px-4 py-8 md:p-8 bg-gray-200 text-gray-900 ">
+      <body>
         {children}
         <Analytics />
       </body>
