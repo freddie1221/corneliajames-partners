@@ -1,4 +1,4 @@
-import base from "@/app/production/lib/airtable/airtable";
+import base from "@/app/ops/lib/airtable/airtable";
 
 export default async function getOrderItem(recordId) {
 

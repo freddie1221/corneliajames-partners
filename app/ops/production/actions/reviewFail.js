@@ -1,7 +1,7 @@
 
 'use server'
 
-import base from "@/app/production/lib/airtable/airtable";
+import base from "@/app/ops/lib/airtable/airtable";
 
 export async function reviewFailAction(productionRecordId, comments) {
   try {
