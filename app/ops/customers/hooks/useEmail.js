@@ -39,6 +39,6 @@ export default function useEmail() {
     });
   };
 
-
+  console.log(email)
   return { email }
 }

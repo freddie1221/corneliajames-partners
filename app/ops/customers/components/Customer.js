@@ -1,5 +1,3 @@
-
-
 export default function Customer({data}) {
   return (
     <div className="flex flex-col gap-2 text-normal">
@@ -45,15 +43,17 @@ function ordersList(orders) {
   )
 }
 
+
 function Order({order}) {
   if(!order) { return null }
+  const statusColor = getStatusColor(order.status)
 
   return(
     <div className="flex flex-col bg-white px-4 py-2 rounded-lg w-full hover:bg-gray-100">
-      <div className="flex flex-row w-full mb-2">
+      <div className="flex flex-row w-full mb-2 justify-between items-center">
         <span className="w-1/3">{order.number}</span>
-        <span className="w-1/3 justify-center">{formatDate(order.date)}</span>
-        <span className="w-1/3 justify-end text-right">{order.status}</span>
+        <span className="w-1/3">{formatDate(order.date)}</span>
+        <span className={`py-1 w-[90px] text-center font-semibold rounded-lg ${statusColor} text-white`}>{order.status}</span>
       </div>
       <OrderItems variants={order.variants} />
     </div>
@@ -71,4 +71,14 @@ function OrderItems({ variants }) {
 
 function formatDate(date) {
   return new Date(date).toLocaleDateString('en-GB', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+function getStatusColor(status) {
+  switch(status) {
+    case 'unfulfilled': return 'bg-blue-600'
+    case 'fulfilled': return 'bg-green-500'
+    case 'cancelled': return 'bg-red-500'
+    case 'hold': return 'bg-yellow-500'
+    default: return 'bg-gray-500'
+  }
 }
