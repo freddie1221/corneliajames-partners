@@ -13,12 +13,12 @@ export const metadata = {
 
 export default function CustomersLayout({ children }) {
   return (
-    <main className="min-h-screen flex flex-col justify-center font-avenir text-sm">
+    <div className="flex flex-col font-avenir text-sm  min-h-screen p-2 bg-gray-200">
+      <Script src="https://integrations.missiveapp.com/missive.js" strategy="beforeInteractive" />
       {children}
-    </main>
+    </div>
   );
 }
+// max-w-2xl mx-auto bg-gray-200 p-2 min-h-screen
 
-
-// <Script src="https://integrations.missiveapp.com/missive.js" strategy="beforeInteractive" />
 // <link rel="stylesheet" href="https://integrations.missiveapp.com/missive.css" />

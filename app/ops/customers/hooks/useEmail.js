@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 export default function useEmail() {
-  const [email, setEmail] = useState('fredjlawson@gmail.com');
+  const [email, setEmail] = useState();
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.Missive) {
@@ -32,7 +32,7 @@ export default function useEmail() {
       if (senderEmail) { setEmail(senderEmail) }
       else { setEmail('fredjlawson@gmail.com') }
 
-      console.log(senderEmail)
+      console.log('senderEmail', senderEmail)
 
     }).catch((err) => {
       console.error('Error fetching conversation data:', err);

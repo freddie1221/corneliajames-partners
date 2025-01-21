@@ -5,10 +5,10 @@ export default function Customer({data}) {
         href={`https://airtable.com/appKPB1F4sKXKlfje/pag0u8K1RckEuLTrx?e8i5L=sfsxnuxLmURGTVwQs&4NOeH=${data.customer.recordId}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:bg-gray-100"
+        className="hover:bg-gray-100 px-3 py-2 rounded-md bg-white"
       >  
-        <div className="flex flex-col bg-white p-4 rounded-lg w-full items-center hover:bg-gray-100">
-          <div className="w-full ">{data.customer.name}</div>
+        <div className="flex flex-col w-full items-center">
+          <div className="w-full text-md">{data.customer.name}</div>
           <div className="w-full text-sm">{data.customer.email}</div>
         </div>
       </a>
@@ -16,8 +16,6 @@ export default function Customer({data}) {
     </div>
   )
 }
-
-
 
 
 function ordersList(orders) {
@@ -40,7 +38,7 @@ function Order({order}) {
   console.log(order)
 
   return(
-    <a href={order.link.url} target="_blank" rel="noopener noreferrer" className="flex flex-col bg-white px-4 py-2 rounded-lg w-full hover:bg-gray-100 no-underline">
+    <a href={order.link.url} target="_blank" rel="noopener noreferrer" className="flex flex-col bg-white px-3 py-2 rounded-md w-full hover:bg-gray-100">
       <div className="flex flex-row w-full mb-2 justify-between items-center">
         <span className="w-1/3">{order.number}</span>
         <span className="w-1/3">{formatDate(order.date)}</span>
