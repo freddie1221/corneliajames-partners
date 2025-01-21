@@ -1,10 +1,14 @@
 import base from './airtable'
 
-export default async function getCustomerData({ email }) {
+export default async function getCustomerData(email) {
+
+  console.log('Searching for customer with email:', email)
   
   const customerRecords = await base('Customers').select({
-    filterByFormula: `{Email} = '${email}'`
+    filterByFormula: `{Email | DEV} = '${email}'`
   }).all()
+
+  console.log('Customer records:', customerRecords)
   
   if (customerRecords.length === 0) { 
     return null
@@ -48,6 +52,15 @@ function mapOrder(order) {
     id: order.fields['Order ID'],
     date: order.fields['Created At'],
     orderItems: order.fields['Order Items'],
-    variants: order.fields['Variants']
+    variants: order.fields['Variants'],
+    link: order.fields['Glops Link']
   }
 }
+
+/*
+  const customerRecords = await base('Customers').select({
+    filterByFormula: `{Email | DEV} = 'fredjlawson@gmail.com'`
+  }).all()
+
+  console.log('Customer records:', customerRecords)
+*/

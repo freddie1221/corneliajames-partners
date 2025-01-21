@@ -49,14 +49,14 @@ function Order({order}) {
   const statusColor = getStatusColor(order.status)
 
   return(
-    <div className="flex flex-col bg-white px-4 py-2 rounded-lg w-full hover:bg-gray-100">
+    <a href={order.link} target="_blank" rel="noopener noreferrer" className="flex flex-col bg-white px-4 py-2 rounded-lg w-full hover:bg-gray-100">
       <div className="flex flex-row w-full mb-2 justify-between items-center">
         <span className="w-1/3">{order.number}</span>
         <span className="w-1/3">{formatDate(order.date)}</span>
         <span className={`py-1 w-[90px] text-center font-semibold rounded-lg ${statusColor} text-white`}>{order.status}</span>
       </div>
       <OrderItems variants={order.variants} />
-    </div>
+    </a>
   )
 }
 
