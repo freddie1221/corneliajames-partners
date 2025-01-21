@@ -9,11 +9,9 @@ export const metadata = {
 
 export default function OpsLayout({ children }) {
   return (
-    <div className="">
-      <main className="max-w-2xl mx-auto bg-gray-200 p-2">
-        {children}
-      </main>
-    </div>
+    <main className="max-w-2xl mx-auto bg-gray-200 p-2 min-h-screen">
+      {children}
+    </main>
   )
 }
 

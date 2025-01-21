@@ -1,6 +1,6 @@
 import base from './airtable'
 
-export default async function getCustomerData({email = 'fredjlawson@gmail.com'}) {
+export default async function getCustomerData({ email }) {
   
   const customerRecords = await base('Customers').select({
     filterByFormula: `{Email} = '${email}'`
