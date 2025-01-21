@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function ReturnsLayout({ children }) {
   return (
-    <div className="">
+    <div className="bg-gray-200">
       <Header />
-      <main className="min-h-screen text-gray-800 font-avenir max-w-2xl mx-auto flex flex-col px-4 py-8 md:p-8 bg-gray-200">
+      <main className="min-h-screen text-gray-800 font-avenir max-w-2xl mx-auto flex flex-col px-4 py-8 md:p-8">
         {children}
       </main>
       <MixpanelInitializer />
