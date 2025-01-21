@@ -6,20 +6,11 @@ import LoadingSpinner from '@/components/LoadingSpinner'
 import { Message } from '@/components/Elements'
 import Customer from './components/Customer'
 
-export default async function CustomerPage({searchParams}) {
-  
-  const urlEmail = searchParams.email
-  console.log(urlEmail)
-
-
-  
-  /*
+export default function CustomerPage() {
   const { email } = useEmail()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
-
-  console.log(urlEmail)
 
   useEffect(() => {
     if (email) { 
@@ -40,10 +31,8 @@ export default async function CustomerPage({searchParams}) {
   if (loading) { return <LoadingSpinner /> }
   if (error) { return <Message text={error} /> }
   if (!data) { return <Message text="No customer found for this email" /> }
-  */
+  
 
- 
- return urlEmail
-  // return <Customer data={data} />
+  return <Customer data={data} />
 
 }
