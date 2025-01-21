@@ -8,14 +8,13 @@ export const metadata = {
   description: "Some useful resources",
 };
 
-export default function RootLayout({ children }) {
+export default function PartnersLayout({ children }) {
   return (
 
         <main>
           <Header />
           {children}
         </main>
-
     
   );
 }

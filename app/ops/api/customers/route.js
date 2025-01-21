@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server'
 export async function GET(request) {
   const { searchParams } = new URL(request.url)
   const email = searchParams.get('email')
+
+  console.log("email", email)
   
   const data = await getCustomerData(email)
 

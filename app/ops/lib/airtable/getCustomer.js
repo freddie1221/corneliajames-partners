@@ -1,4 +1,6 @@
 import base from './airtable'
+import { mapCustomer, mapOrder, mapShipment } from '@/app/ops/customers/utils/mappers'
+import { listRecords } from '@/app/ops/customers/utils/listRecords'
 
 export default async function getCustomerData(email) {
   
@@ -12,45 +14,17 @@ export default async function getCustomerData(email) {
 
   const customer = mapCustomer(customerRecords[0])
   const orders = await listRecords('Orders', customer.orders, 'Order Number', mapOrder)
+  const shipments = await listRecords('Shipments', customer.shipments, 'Key', mapShipment)
 
-  return { customer, orders }
-}
-
-
-function mapCustomer(customer) {
-  return {
-    recordId: customer.id,
-    name: customer.fields.Name,
-    email: customer.fields.Email,
-    orders: customer.fields.Orders,
-  }
-}
-
-async function listRecords(table, recordIds, sortField, map) {
+  return { customer, orders, shipments }
   
-  if(recordIds.length === 0) { return [] }
-  
-  const records = await base(table).select({
-    filterByFormula: `OR(${recordIds.map(id => `RECORD_ID() = '${id}'`).join(',')})`,
-    sort: [{field: sortField, direction: 'desc'}]
-  }).all()
-  
-  return records.map(map)
 }
 
 
-function mapOrder(order) {
-  return {
-    recordId: order.id,
-    number: order.fields['Order Number'],
-    status: order.fields['Status'],
-    id: order.fields['Order ID'],
-    date: order.fields['Created At'],
-    orderItems: order.fields['Order Items'],
-    variants: order.fields['Variants'],
-    link: order.fields['Glops Link']
-  }
-}
+
+
+
+
 
 /*
   const customerRecords = await base('Customers').select({

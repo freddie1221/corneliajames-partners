@@ -28,6 +28,7 @@ export default function CustomerPage() {
     }
   }, [email])
 
+
   if (loading) { return <div className="flex justify-center items-center h-screen"><LoadingSpinner /></div> }
   if (error) { return <Message text={error} /> }
   if (!data || !data.customer) { return <Message text="No customer found for this email" /> }

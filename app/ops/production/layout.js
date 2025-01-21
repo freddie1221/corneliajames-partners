@@ -6,7 +6,7 @@ export const metadata = {
   description: "Some useful resources",
 };
 
-export default function RootLayout({ children }) {
+export default function ProductionLayout({ children }) {
   return (
     <main className="max-w-2xl mx-auto flex flex-col gap-3">
       {children}
