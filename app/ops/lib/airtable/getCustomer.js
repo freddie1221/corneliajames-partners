@@ -51,10 +51,3 @@ function mapOrder(order) {
     variants: order.fields['Variants']
   }
 }
-
-function mapOrderItem(orderItem) {
-  return {
-    recordId: orderItem.id,
-    name: orderItem.fields['Product Name'],
-  }
-}
