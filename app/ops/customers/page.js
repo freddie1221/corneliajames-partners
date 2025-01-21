@@ -32,10 +32,7 @@ export default function CustomerPage() {
   if (error) { return <Message text={error} /> }
   if (!data) { 
     return( 
-      <div>
-        <p>Sender Email: {email}</p>
-        <Message text="No customer found" />
-      </div>
+      <Message text="No customer found for this email" />
     ) 
   }
 

@@ -6,7 +6,10 @@ export default async function getCustomerData(email) {
     filterByFormula: `{Email} = '${email}'`
   }).all()
   
-  if (customerRecords.length === 0) { return null }
+  if (customerRecords.length === 0) { 
+    return null
+  }
+
   const customer = mapCustomer(customerRecords[0])
   
   const orders = await listRecords('Orders', customer.orders, 'Order Number', mapOrder)
