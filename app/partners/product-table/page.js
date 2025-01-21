@@ -1,4 +1,4 @@
-import { getProductsData } from '@/app/production/lib/shopify';
+import { getProductsData } from '@/app/ops/lib/shopify';
 import ProductTable from './ProductTable';
 
 export async function generateStaticParams() {
