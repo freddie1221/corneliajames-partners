@@ -8,9 +8,17 @@ const getReturnQuery = (id) => `
       id
       order { 
         id
+        email
+        name
         currencyCode
         shippingAddress {
           countryCodeV2
+        }
+        fulfillments(first: 10){
+          trackingInfo {
+            company
+            number
+          }
         }
       }
       returnShippingFees {
@@ -31,7 +39,10 @@ const getReturnQuery = (id) => `
             restockingFee {
               percentage
             }
-
+            totalWeight {
+              unit
+              value
+            }
             fulfillmentLineItem {
               lineItem {
                 name
@@ -49,6 +60,11 @@ const getReturnQuery = (id) => `
                     presentmentMoney {
                       amount
                     }
+                  }
+                }
+                variant {
+                  inventoryItem {
+                    harmonizedSystemCode
                   }
                 }
               }

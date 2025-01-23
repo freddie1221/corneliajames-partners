@@ -12,7 +12,7 @@ export default function useGetLabel() {
     setSuccess(false);
     setError(null);
 
-    const response = await fetch('/returns/api/shipping-label', {
+    const response = await fetch('/returns/api/label', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

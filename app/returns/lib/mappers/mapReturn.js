@@ -1,5 +1,7 @@
 
 export default function mapReturn(data) {
+
+  console.log(data.returnLineItems.nodes[0])
   
   const items = data.returnLineItems.nodes.map(item => {
     return {
@@ -10,17 +12,24 @@ export default function mapReturn(data) {
       name: item.fulfillmentLineItem.lineItem.name,
       image: item.fulfillmentLineItem.lineItem.image.url,
       requiresShipping: item.fulfillmentLineItem.lineItem.requiresShipping,
+      hsCode: item.fulfillmentLineItem.lineItem.variant.inventoryItem.harmonizedSystemCode,
+      
       restockingFee: item.restockingFee?.percentage || 0,
-
       discountedTotal: parseFloat(item.fulfillmentLineItem.lineItem.originalTotalSet.presentmentMoney.amount) - 
-                      parseFloat(item.fulfillmentLineItem.lineItem.discountAllocations[0]?.allocatedAmountSet?.presentmentMoney?.amount || 0)
+                       parseFloat(item.fulfillmentLineItem.lineItem.discountAllocations[0]?.allocatedAmountSet?.presentmentMoney?.amount || 0)
     }
   })
+
+  console.log(items)
 
   const returnData =  {
     name: data.name,
     id: data.id,
+    email: data.order.email,
     orderId: data.order.id.split('/').pop(),
+    orderName: data.order.name,
+    trackingNumber: data.order.fulfillments[0].trackingInfo.number,
+    trackingCompany: data.order.fulfillments[0].trackingInfo.company,
     status: mapStatus(data.status),
     totalQuantity: data.totalQuantity,
     items: items,
