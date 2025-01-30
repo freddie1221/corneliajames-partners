@@ -7,7 +7,7 @@ export default async function ReturnDetails({ returnData, order }) {
   if (!returnData) return null
 
   const returnSummary = await getReturnSummary({returnData, order})
-  const { returnType, returnShipping, storeCreditAmount, refundOutstanding, taxDeduction, restockingFee, totalRefund } = returnSummary
+  const { returnType, returnShipping, storeCreditAmount, refundOutstanding, taxDeduction, restockingFee } = returnSummary
 
 
   const currency = order.currencyCode

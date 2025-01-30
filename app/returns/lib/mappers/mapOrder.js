@@ -52,7 +52,7 @@ export default function mapOrder(order) {
     totalPrice: parseFloat(order.subtotalPriceSet.presentmentMoney.amount),
     taxRate: parseFloat(order.taxLines[0]?.rate || 0),
     exchangeRate: exchangeRate,
-    shippingService: getShippingService({countryCode: order.shippingAddress.countryCode, exchangeRate: exchangeRate}),
+    shippingService: getShippingService({countryCode: order.shippingAddress.countryCodeV2, exchangeRate: exchangeRate}),
     customerId: order.customer.id.split('/').pop(),
     returnIds: order.returns.nodes.map(returnData => returnData.id.split('/').pop()),
     exclusions: exclusions(order.tags),
