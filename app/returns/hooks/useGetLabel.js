@@ -7,7 +7,7 @@ export default function useGetLabel() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const getLabel = async ({returnData, shippingAddress}) => {
+  const getLabel = async ({returnData, order}) => {
     setIsLoading(true);
     setSuccess(false);
     setError(null);
@@ -17,7 +17,7 @@ export default function useGetLabel() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({returnData, shippingAddress}),
+      body: JSON.stringify({returnData, order}),
     });
 
     const result = await response.json();

@@ -8,17 +8,9 @@ const getReturnQuery = (id) => `
       id
       order { 
         id
-        email
-        name
         currencyCode
         shippingAddress {
           countryCodeV2
-        }
-        fulfillments(first: 10){
-          trackingInfo {
-            company
-            number
-          }
         }
       }
       returnShippingFees {
@@ -43,12 +35,17 @@ const getReturnQuery = (id) => `
               unit
               value
             }
+     
             fulfillmentLineItem {
               lineItem {
                 name
+                sku
                 requiresShipping
                 image {
                   url
+                }
+                product {
+                  productType
                 }
                 originalTotalSet {
                   presentmentMoney {

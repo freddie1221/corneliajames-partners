@@ -1,35 +1,34 @@
 
 export default function mapReturn(data) {
 
-  console.log(data.returnLineItems.nodes[0])
+// console.log(data.returnLineItems.nodes[0])
   
   const items = data.returnLineItems.nodes.map(item => {
     return {
       id: item.id,
+      sku: item.fulfillmentLineItem.lineItem.sku,
       quantity: item.quantity,
       returnReasonNote: item.returnReasonNote,
       returnReason: item.returnReason,
       name: item.fulfillmentLineItem.lineItem.name,
       image: item.fulfillmentLineItem.lineItem.image.url,
+      productType: item.fulfillmentLineItem.lineItem.product.productType,
       requiresShipping: item.fulfillmentLineItem.lineItem.requiresShipping,
       hsCode: item.fulfillmentLineItem.lineItem.variant.inventoryItem.harmonizedSystemCode,
-      
       restockingFee: item.restockingFee?.percentage || 0,
       discountedTotal: parseFloat(item.fulfillmentLineItem.lineItem.originalTotalSet.presentmentMoney.amount) - 
-                       parseFloat(item.fulfillmentLineItem.lineItem.discountAllocations[0]?.allocatedAmountSet?.presentmentMoney?.amount || 0)
+                       parseFloat(item.fulfillmentLineItem.lineItem.discountAllocations[0]?.allocatedAmountSet?.presentmentMoney?.amount || 0),
+      totalWeight: item.totalWeight.value,
+      totalWeightUnit: item.totalWeight.unit,
     }
   })
 
-  console.log(items)
+  // console.log(items)
 
   const returnData =  {
     name: data.name,
     id: data.id,
-    email: data.order.email,
     orderId: data.order.id.split('/').pop(),
-    orderName: data.order.name,
-    trackingNumber: data.order.fulfillments[0].trackingInfo.number,
-    trackingCompany: data.order.fulfillments[0].trackingInfo.company,
     status: mapStatus(data.status),
     totalQuantity: data.totalQuantity,
     items: items,

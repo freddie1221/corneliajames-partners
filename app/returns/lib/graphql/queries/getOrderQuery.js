@@ -55,6 +55,10 @@ const getOrderQuery = (id) => `
         fulfillments(first: 10) {
           createdAt
           status
+          trackingInfo {
+            company
+            number
+          }
           fulfillmentLineItems(first: 10) {
             nodes {
               lineItem {

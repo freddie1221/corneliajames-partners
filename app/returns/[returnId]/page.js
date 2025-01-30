@@ -20,7 +20,7 @@ export default async function ReturnPage({ params }) {
     <div className="flex flex-col gap-4">
       <ReturnDetails returnData={returnData} order={order} />
       <StoreCredit returnData={returnData} returnType={returnType} order={order} />
-      <ReturnShipping returnData={returnData} includeShipping={includeShipping} shippingAddress={order.address}/>
+      <ReturnShipping returnData={returnData} includeShipping={includeShipping} order={order}/>
       <ReturnActions returnData={returnData} returnType={returnType} order={order}/>
     </div>
   )

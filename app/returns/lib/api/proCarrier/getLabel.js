@@ -1,28 +1,14 @@
+export default async function getProCarrierLabel({returnData, order}) {
 
-export default async function getProCarrierLabel({returnData, shippingAddress}) {
-
-  /*
-           name
-          firstName
-          lastName
-          company
-          address1
-          address2
-          city
-          province
-          provinceCode
-          zip
-          country
-          countryCodeV2
-          phone
-  */
+  const shippingAddress = order.address
+  
   
   const url = "https://returns.dgapi.app/api/returns/create/json"
   const payload = {
-    "ApiKey": process.env.PRO_CARRIER_API_KEY,
+    "ApiKey": process.env.PRO_CARRIER_API_KEY_TEST,
       "Request": {
         "Return": {
-          "Country": shippingAddress.country,
+          "Country": shippingAddress.countryCodeV2,
           "State": shippingAddress.province,
           "Zip": shippingAddress.zip,
           "City": shippingAddress.city,
@@ -31,23 +17,27 @@ export default async function getProCarrierLabel({returnData, shippingAddress}) 
           "Name": shippingAddress.name,
           "Company": shippingAddress.company,
           "Phone": shippingAddress.phone,
-          "Email": returnData.email,
-          "OrderReference": returnData.orderName,
+          "Email": order.email,
+          "OrderReference": order.name,
           "FinalDisposition": "return",
-					"Products": [
-            {
-              "Description": returnData.returnLineItems.nodes[0].name,
-              "Quantity": returnData.returnLineItems.nodes[0].quantity,
-              "Price": returnData.returnLineItems.nodes[0].discountedTotal,
-              "Weight": returnData.returnLineItems.nodes[0].totalWeight.value,
-              "WeightUom": returnData.returnLineItems.nodes[0].totalWeight.unit,
-              "CountryCode": "GB",
-              "HsCode": returnData.returnLineItems.nodes[0].hsCode,
-              "ExportAwb": returnData.trackingNumber,
-							"ExportCarrierName": returnData.trackingCompany,
-              "FinalDisposition": "return",
+          "Products": returnData.items.map(item => ({
+            "Sku": item.sku,
+            "Description": item.productType,
+            "Quantity": item.quantity,
+            "Price": item.discountedTotal,
+            "Weight": item.totalWeight,
+            "WeightUom": "kg",
+            "CountryCode": "GB",
+            "HsCode": item.hsCode,
+            "ExportAwb": order.outboundTrackingNumber,
+            "ExportCarrierName": order.outboundTrackingCompany,
+            "FinalDisposition": "return",
+            "Reason": {
+              "Action": "Refund",
+              "Reason": "Not needed",
+              "Wish": "",
             }
-          ],
+          })),
           "LabelFormat": "pdf-6x4",
  					"Destination": {
             "Address": {
@@ -67,6 +57,8 @@ export default async function getProCarrierLabel({returnData, shippingAddress}) 
         }
       }
     }
+
+    console.log("payload", payload.Request.Return)
 
     const response = await fetch(url, {
       method: "POST",

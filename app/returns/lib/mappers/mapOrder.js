@@ -30,6 +30,7 @@ export default function mapOrder(order) {
   const exchangeRate = parseFloat(order.subtotalPriceSet.presentmentMoney.amount) / parseFloat(order.subtotalPriceSet.shopMoney.amount)
   const currencyCode = order.subtotalPriceSet.presentmentMoney.currencyCode
   
+  console.log("order fulfillments", order.fulfillments[0])
 
   order = {
     id: order.id.split('/').pop(),
@@ -37,22 +38,24 @@ export default function mapOrder(order) {
     firstName: order.shippingAddress.firstName,
     name: order.name,
     email: order.email,
-    exclusions: exclusions(order.tags),
-    customerId: order.customer.id.split('/').pop(),
     createdAt: order.createdAt,
     shippedOn: order.fulfillments?.[0]?.createdAt,
     validUntil: calculateValidUntil(order.createdAt),
-    totalPrice: parseFloat(order.subtotalPriceSet.presentmentMoney.amount),
     statusPageUrl: order.statusPageUrl,
     address: order.shippingAddress,
-    countryCode: order.shippingAddress.countryCode,
+    countryCode: order.shippingAddress.countryCodeV2,
     currencyCode: currencyCode,
     orderItems: orderItems,
+    outboundTrackingNumber: order.fulfillments[0].trackingInfo[0].number,
+    outboundTrackingCompany: order.fulfillments[0].trackingInfo[0].company,
     returnableItems: returnableItems,
+    totalPrice: parseFloat(order.subtotalPriceSet.presentmentMoney.amount),
     taxRate: parseFloat(order.taxLines[0]?.rate || 0),
     exchangeRate: exchangeRate,
     shippingService: getShippingService({countryCode: order.shippingAddress.countryCode, exchangeRate: exchangeRate}),
+    customerId: order.customer.id.split('/').pop(),
     returnIds: order.returns.nodes.map(returnData => returnData.id.split('/').pop()),
+    exclusions: exclusions(order.tags),
   }
 
   return order

@@ -8,18 +8,20 @@ import ReturnLabelHandler from '@/app/returns/lib/api/createStagedUpload';
 export async function POST(req) {
 
   try {
-    const { returnData, shippingAddress } = await req.json();
+    const { returnData, order } = await req.json();
 
     // const shipmentPayload = buildShipment({returnData, shippingAddress});
-    const proCarrierResponse = await getProCarrierLabel({returnData, shippingAddress});
-    const shipment = await proCarrierResponse.json()
+    const shipment = await getProCarrierLabel({returnData, order});
 
-    if (shipment.postage_label) {
 
-      const epDocumentLinks = [
-        shipment.postage_label.label_url,
-        shipment.forms[0].form_url
-      ]
+    console.log("shipment", shipment)
+
+
+
+
+    if (shipment.LabelImage) {
+
+
       const handler = ReturnLabelHandler();
       const fileUrl = await handler.processReturnLabel(epDocumentLinks);
 
@@ -46,6 +48,7 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+
 
   } catch (error) {
     console.log("generic error AKA something in this file was crap: ", error)

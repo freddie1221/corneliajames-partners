@@ -1,7 +1,7 @@
 
 export default function buildShipment({returnData, shippingAddress}) {
   
-  console.log("shippingAddress", shippingAddress)
+  // console.log("shippingAddress", shippingAddress)
 
   const shipmentPayload = {
     parcel: {
