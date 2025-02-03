@@ -30,7 +30,7 @@ export default function mapOrder(order) {
   const exchangeRate = parseFloat(order.subtotalPriceSet.presentmentMoney.amount) / parseFloat(order.subtotalPriceSet.shopMoney.amount)
   const currencyCode = order.subtotalPriceSet.presentmentMoney.currencyCode
   
-  console.log("order fulfillments", order.fulfillments[0])
+  // console.log("order fulfillments", order.fulfillments[0])
 
   order = {
     id: order.id.split('/').pop(),

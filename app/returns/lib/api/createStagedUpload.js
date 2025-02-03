@@ -14,7 +14,6 @@ export async function combineShippingDocuments(documentUrls) {
 
   // Create a new PDF document
   const combinedPdf = await PDFDocument.create()
-
     // Load and copy pages from each file
     for (const {buffer, isImage} of fileBuffers) {
       if (isImage) {
@@ -85,7 +84,6 @@ export async function createShopifyStagedUpload(filename, fileBuffer) {
 
 
   const uploadFile = async () => {
-
     const formData = new FormData();
     stagedTarget.parameters.forEach(param => formData.append(param.name, param.value));
     
@@ -94,7 +92,7 @@ export async function createShopifyStagedUpload(filename, fileBuffer) {
     formData.append("file", blob);
   
     const response = await fetch(stagedTarget.url, {
-      method: "POST", // Use the `httpMethod` from stagedUploadsCreate response
+      method: "POST",
       body: formData
     });
   

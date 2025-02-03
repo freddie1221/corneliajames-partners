@@ -5,7 +5,7 @@ export default async function getProCarrierLabel({returnData, order}) {
   
   const url = "https://returns.dgapi.app/api/returns/create/json"
   const payload = {
-    "ApiKey": process.env.PRO_CARRIER_API_KEY_TEST,
+    "ApiKey": process.env.PRO_CARRIER_API_KEY,
       "Request": {
         "Return": {
           "Country": shippingAddress.countryCodeV2,
