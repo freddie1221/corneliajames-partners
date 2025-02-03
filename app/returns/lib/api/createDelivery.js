@@ -1,6 +1,5 @@
 import { makeGraphQLRequest } from './makeGraphQLRequest';
 import createDeliveryMutation from '@/app/returns/lib/graphql/mutations/createDeliveryMutation';
-// import ReturnLabelHandler from './createStagedUpload';
 
 export default async function createDelivery(deliveryData) {
 

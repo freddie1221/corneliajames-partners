@@ -44,6 +44,7 @@ export default function OrderItemsSelector({ setReturnLineItems, setReturnValue,
               key={item.id + index}
               index={index}
               item={item} 
+              ignoreBlockers={order.exclusions.ignoreBlockers}
               returnType={returnType}
               setItemsCount={setItemsCount}
               setReturnValue={setReturnValue}

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-export default function OrderItem({ item, onSelectItem, setItemsCount, setReturnValue, setStoreCreditValue }) {
+export default function OrderItem({ item, onSelectItem, setItemsCount, setReturnValue, setStoreCreditValue, ignoreBlockers }) {
   const { id, name, sku, quantity, image, value, price, currencyCode, requiresShipping, customAttributes } = item;
   const [isChecked, setIsChecked] = useState(false);
   const [returnQuantity, setReturnQuantity] = useState(1)
@@ -80,7 +80,7 @@ export default function OrderItem({ item, onSelectItem, setItemsCount, setReturn
               <span>Quantity</span><span>{quantity}</span>
             </div>
           </div>
-          {monogrammed && 
+          {monogrammed && !ignoreBlockers &&  
             <div className="text-sm bg-gray-100 p-2 rounded-md">This item has been monogrammed so unfortunately is not returnable. Please contact us if you think this is a mistake. </div>
           }
           {returnReasonMissing && 
